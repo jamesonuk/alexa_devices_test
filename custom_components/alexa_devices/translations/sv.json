@@ -1,0 +1,113 @@
+{
+    "common": {
+        "data_code": "Eng\u00e5ngsl\u00f6senord (OTP-kod)",
+        "data_description_code": "Eng\u00e5ngsl\u00f6senordet f\u00f6r att logga in p\u00e5 ditt konto. F\u00f6r n\u00e4rvarande st\u00f6ds endast tokens fr\u00e5n OTP-applikationer.",
+        "data_description_country": "Det land d\u00e4r ditt Amazon-konto \u00e4r registrerat.",
+        "data_description_password": "L\u00f6senordet f\u00f6r ditt Amazon-konto.",
+        "data_description_username": "E-postadressen f\u00f6r ditt Amazon-konto.",
+        "device_id_description": "ID:t f\u00f6r den enhet som kommandot ska skickas till."
+    },
+    "config": {
+        "abort": {
+            "already_configured": "Tj\u00e4nsten \u00e4r redan konfigurerad",
+            "cannot_connect": "Det gick inte att ansluta",
+            "invalid_auth": "Ogiltig autentisering",
+            "reauth_successful": "\u00c5terautentisering lyckades",
+            "unknown": "Ov\u00e4ntat fel"
+        },
+        "error": {
+            "cannot_connect": "Det gick inte att ansluta",
+            "invalid_auth": "Ogiltig autentisering",
+            "unknown": "Ov\u00e4ntat fel",
+            "wrong_country": "Fel land har valts. V\u00e4nligen v\u00e4lj det land d\u00e4r ditt Amazon-konto \u00e4r registrerat."
+        },
+        "flow_title": "{username}",
+        "step": {
+            "reauth_confirm": {
+                "data": {
+                    "code": "Eng\u00e5ngsl\u00f6senord (OTP-kod)",
+                    "password": "L\u00f6senord"
+                },
+                "data_description": {
+                    "code": "Eng\u00e5ngsl\u00f6senordet f\u00f6r att logga in p\u00e5 ditt konto. F\u00f6r n\u00e4rvarande st\u00f6ds endast tokens fr\u00e5n OTP-applikationer.",
+                    "password": "L\u00f6senordet f\u00f6r ditt Amazon-konto."
+                }
+            },
+            "user": {
+                "data": {
+                    "code": "Eng\u00e5ngsl\u00f6senordet f\u00f6r att logga in p\u00e5 ditt konto. F\u00f6r n\u00e4rvarande st\u00f6ds endast tokens fr\u00e5n OTP-applikationer.",
+                    "country": "Landskod",
+                    "password": "L\u00f6senord",
+                    "username": "Anv\u00e4ndarnamn"
+                },
+                "data_description": {
+                    "code": "Eng\u00e5ngsl\u00f6senordet f\u00f6r att logga in p\u00e5 ditt konto. F\u00f6r n\u00e4rvarande st\u00f6ds endast tokens fr\u00e5n OTP-applikationer.",
+                    "country": "Det land d\u00e4r ditt Amazon-konto \u00e4r registrerat.",
+                    "password": "L\u00f6senordet f\u00f6r ditt Amazon-konto.",
+                    "username": "E-postadressen f\u00f6r ditt Amazon-konto."
+                }
+            }
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "baby_cry_detection": {
+                "name": "Bebisgr\u00e5t"
+            },
+            "beeping_appliance_detection": {
+                "name": "Pipande apparat"
+            },
+            "bluetooth": {
+                "name": "Bluetooth"
+            },
+            "cough_detection": {
+                "name": "Hostande"
+            },
+            "dog_bark_detection": {
+                "name": "Sk\u00e4llande hund"
+            },
+            "water_sounds_detection": {
+                "name": "Vattenljud"
+            }
+        },
+        "notify": {
+            "announce": {
+                "name": "Annonsera"
+            },
+            "speak": {
+                "name": "Tala"
+            }
+        },
+        "switch": {
+            "do_not_disturb": {
+                "name": "St\u00f6r ej"
+            }
+        }
+    },
+    "selector": {
+        "sound": {
+            "options": {
+                "amzn_sfx_baby_cry": "Bebisgr\u00e5t",
+                "train": "T\u00e5g"
+            }
+        }
+    },
+    "services": {
+        "send_sound": {
+            "fields": {
+                "device_id": {
+                    "description": "ID:t f\u00f6r den enhet som kommandot ska skickas till.",
+                    "name": "Enhet"
+                }
+            }
+        },
+        "send_text_command": {
+            "fields": {
+                "device_id": {
+                    "description": "ID:t f\u00f6r den enhet som kommandot ska skickas till.",
+                    "name": "Enhet"
+                }
+            }
+        }
+    }
+}

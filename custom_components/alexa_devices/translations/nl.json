@@ -1,0 +1,80 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Dienst is al geconfigureerd",
+            "cannot_connect": "Kan geen verbinding maken",
+            "invalid_auth": "Ongeldige authenticatie",
+            "reauth_successful": "Herauthenticatie geslaagd",
+            "unknown": "Onverwachte fout"
+        },
+        "error": {
+            "cannot_connect": "Kan geen verbinding maken",
+            "invalid_auth": "Ongeldige authenticatie",
+            "unknown": "Onverwachte fout"
+        },
+        "flow_title": "{username}",
+        "step": {
+            "reauth_confirm": {
+                "data": {
+                    "password": "Wachtwoord"
+                }
+            },
+            "user": {
+                "data": {
+                    "password": "Wachtwoord",
+                    "username": "Gebruikersnaam"
+                }
+            }
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "baby_cry_detection": {
+                "name": "Huilende baby"
+            },
+            "beeping_appliance_detection": {
+                "name": "Piepend apparaat"
+            },
+            "bluetooth": {
+                "name": "Bluetooth"
+            },
+            "cough_detection": {
+                "name": "Hoesten"
+            },
+            "dog_bark_detection": {
+                "name": "Blaffende hond"
+            },
+            "water_sounds_detection": {
+                "name": "Watergeluiden"
+            }
+        },
+        "notify": {
+            "announce": {
+                "name": "Aankondigen"
+            },
+            "speak": {
+                "name": "Spreken"
+            }
+        },
+        "switch": {
+            "do_not_disturb": {
+                "name": "Niet storen"
+            }
+        }
+    },
+    "selector": {
+        "sound": {
+            "options": {
+                "glass": "Glas",
+                "kids": "Kinderen",
+                "leather": "Leer",
+                "metal": "Metaal",
+                "prison": "Gevangenis",
+                "rain": "Regen",
+                "sails": "Zeilen",
+                "sled": "Slee",
+                "snow": "Sneeuw"
+            }
+        }
+    }
+}

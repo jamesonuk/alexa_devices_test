@@ -1,0 +1,73 @@
+{
+    "common": {
+        "data_code": "\u30ef\u30f3\u30bf\u30a4\u30e0\u30d1\u30b9\u30ef\u30fc\u30c9\uff08OTP\u30b3\u30fc\u30c9\uff09",
+        "data_description_code": "\u30a2\u30ab\u30a6\u30f3\u30c8\u306b\u30ed\u30b0\u30a4\u30f3\u3059\u308b\u305f\u3081\u306e\u30ef\u30f3\u30bf\u30a4\u30e0\u30d1\u30b9\u30ef\u30fc\u30c9\u3067\u3059\u3002\u73fe\u5728\u3001OTP\u30a2\u30d7\u30ea\u30b1\u30fc\u30b7\u30e7\u30f3\u306e\u30c8\u30fc\u30af\u30f3\u306e\u307f\u304c\u30b5\u30dd\u30fc\u30c8\u3055\u308c\u3066\u3044\u307e\u3059\u3002",
+        "data_description_country": "Amazon \u30a2\u30ab\u30a6\u30f3\u30c8\u304c\u767b\u9332\u3055\u308c\u3066\u3044\u308b\u56fd\u3002",
+        "data_description_password": "Amazon \u30a2\u30ab\u30a6\u30f3\u30c8\u306e\u30d1\u30b9\u30ef\u30fc\u30c9\u3002",
+        "data_description_username": "Amazon \u30a2\u30ab\u30a6\u30f3\u30c8\u306e\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9\u3002"
+    },
+    "config": {
+        "abort": {
+            "already_configured": "\u30b5\u30fc\u30d3\u30b9\u306f\u3059\u3067\u306b\u8a2d\u5b9a\u3055\u308c\u3066\u3044\u307e\u3059",
+            "cannot_connect": "\u63a5\u7d9a\u306b\u5931\u6557\u3057\u307e\u3057\u305f",
+            "invalid_auth": "\u7121\u52b9\u306a\u8a8d\u8a3c",
+            "reauth_successful": "\u518d\u8a8d\u8a3c\u306b\u6210\u529f\u3057\u307e\u3057\u305f",
+            "unknown": "\u4e88\u671f\u3057\u306a\u3044\u30a8\u30e9\u30fc"
+        },
+        "error": {
+            "cannot_connect": "\u63a5\u7d9a\u306b\u5931\u6557\u3057\u307e\u3057\u305f",
+            "cannot_retrieve_data": "Amazon\u304b\u3089\u30c7\u30fc\u30bf\u3092\u53d6\u5f97\u3067\u304d\u307e\u305b\u3093\u3002\u3057\u3070\u3089\u304f\u3057\u3066\u304b\u3089\u3082\u3046\u4e00\u5ea6\u304a\u8a66\u3057\u304f\u3060\u3055\u3044\u3002",
+            "invalid_auth": "\u7121\u52b9\u306a\u8a8d\u8a3c",
+            "unknown": "\u4e88\u671f\u3057\u306a\u3044\u30a8\u30e9\u30fc",
+            "wrong_country": "\u9078\u629e\u3057\u305f\u56fd\u304c\u9593\u9055\u3063\u3066\u3044\u307e\u3059\u3002Amazon\u30a2\u30ab\u30a6\u30f3\u30c8\u304c\u767b\u9332\u3055\u308c\u3066\u3044\u308b\u56fd\u3092\u9078\u629e\u3057\u3066\u304f\u3060\u3055\u3044\u3002"
+        },
+        "flow_title": "{username}",
+        "step": {
+            "reauth_confirm": {
+                "data": {
+                    "code": "\u30ef\u30f3\u30bf\u30a4\u30e0\u30d1\u30b9\u30ef\u30fc\u30c9\uff08OTP\u30b3\u30fc\u30c9\uff09",
+                    "password": "\u30d1\u30b9\u30ef\u30fc\u30c9"
+                },
+                "data_description": {
+                    "code": "\u30a2\u30ab\u30a6\u30f3\u30c8\u306b\u30ed\u30b0\u30a4\u30f3\u3059\u308b\u305f\u3081\u306e\u30ef\u30f3\u30bf\u30a4\u30e0\u30d1\u30b9\u30ef\u30fc\u30c9\u3067\u3059\u3002\u73fe\u5728\u3001OTP\u30a2\u30d7\u30ea\u30b1\u30fc\u30b7\u30e7\u30f3\u306e\u30c8\u30fc\u30af\u30f3\u306e\u307f\u304c\u30b5\u30dd\u30fc\u30c8\u3055\u308c\u3066\u3044\u307e\u3059\u3002",
+                    "password": "Amazon \u30a2\u30ab\u30a6\u30f3\u30c8\u306e\u30d1\u30b9\u30ef\u30fc\u30c9\u3002"
+                }
+            },
+            "user": {
+                "data": {
+                    "code": "\u30ef\u30f3\u30bf\u30a4\u30e0\u30d1\u30b9\u30ef\u30fc\u30c9\uff08OTP\u30b3\u30fc\u30c9\uff09",
+                    "country": "\u56fd",
+                    "password": "\u30d1\u30b9\u30ef\u30fc\u30c9",
+                    "username": "\u30e6\u30fc\u30b6\u30fc\u540d"
+                }
+            }
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "baby_cry_detection": {
+                "name": "\u8d64\u3061\u3083\u3093\u306e\u6ce3\u304d\u58f0"
+            },
+            "beeping_appliance_detection": {
+                "name": "\u30d3\u30fc\u30d7\u97f3\u6a5f\u5668"
+            },
+            "cough_detection": {
+                "name": "\u54b3"
+            },
+            "dog_bark_detection": {
+                "name": "\u72ac\u306e\u5420\u3048\u58f0"
+            },
+            "water_sounds_detection": {
+                "name": "\u6c34\u306e\u97f3"
+            }
+        }
+    },
+    "exceptions": {
+        "cannot_connect_with_error": {
+            "message": "\u63a5\u7d9a\u30a8\u30e9\u30fc: {error}"
+        },
+        "cannot_retrieve_data_with_error": {
+            "message": "\u30c7\u30fc\u30bf\u306e\u53d6\u5f97\u4e2d\u306b\u30a8\u30e9\u30fc\u304c\u767a\u751f\u3057\u307e\u3057\u305f: {error}"
+        }
+    }
+}
