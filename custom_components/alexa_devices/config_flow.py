@@ -37,7 +37,7 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str,
     session = aiohttp_client.async_create_clientsession(hass)
     api = AmazonEchoApi(
         session,
-        data[CONF_COUNTRY],
+        # data[CONF_COUNTRY],
         data[CONF_USERNAME],
         data[CONF_PASSWORD],
     )
