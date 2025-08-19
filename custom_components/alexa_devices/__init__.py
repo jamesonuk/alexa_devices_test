@@ -52,7 +52,7 @@ async def async_migrate_entry(hass: HomeAssistant, entry: AmazonConfigEntry) -> 
         # Save domain and remove country
         new_data = entry.data.copy()
         new_data.update({"site": f"https://www.amazon.{domain}"})
-        new_data.pop(CONF_COUNTRY)
+        # new_data.pop(CONF_COUNTRY)
 
         hass.config_entries.async_update_entry(entry, data=new_data, version=2)
 
