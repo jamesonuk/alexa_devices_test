@@ -44,7 +44,7 @@ class AmazonDevicesCoordinator(DataUpdateCoordinator[dict[str, AmazonDevice]]):
         )
         self.api = AmazonEchoApi(
             session,
-            entry.data[CONF_COUNTRY],
+            # entry.data[CONF_COUNTRY],
             entry.data[CONF_USERNAME],
             entry.data[CONF_PASSWORD],
             entry.data[CONF_LOGIN_DATA],
