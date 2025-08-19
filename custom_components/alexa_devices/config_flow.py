@@ -10,7 +10,7 @@ from aioamazondevices.exceptions import (
     CannotAuthenticate,
     CannotConnect,
     CannotRetrieveData,
-    WrongCountry,
+    # WrongCountry,
 )
 import voluptuous as vol
 
@@ -62,8 +62,8 @@ class AmazonDevicesConfigFlow(ConfigFlow, domain=DOMAIN):
                 errors["base"] = "invalid_auth"
             except CannotRetrieveData:
                 errors["base"] = "cannot_retrieve_data"
-            except WrongCountry:
-                errors["base"] = "wrong_country"
+            # except WrongCountry:
+            #    errors["base"] = "wrong_country"
             else:
                 await self.async_set_unique_id(data["customer_info"]["user_id"])
                 self._abort_if_unique_id_configured()
