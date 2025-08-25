@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from typing import Final
 
 from aioamazondevices.api import AmazonDevice
-from aioamazondevices.const import SENSOR_STATE_OFF
+from aioamazondevices.const import SENSOR_STATE_MOTION_DETECTED
 
 from homeassistant.components.binary_sensor import (
     BinarySensorDeviceClass,
@@ -49,7 +49,7 @@ BINARY_SENSORS: Final = (
     AmazonBinarySensorEntityDescription(
         key="humanPresenceDetectionState",
         device_class=BinarySensorDeviceClass.MOTION,
-        is_on_fn=lambda device, key: (device.sensors[key].value != SENSOR_STATE_OFF),
+        is_on_fn=lambda device, key: (device.sensors[key].value == SENSOR_STATE_MOTION_DETECTED),
         is_supported=lambda device, key: device.sensors.get(key) is not None,
     ),
 )
