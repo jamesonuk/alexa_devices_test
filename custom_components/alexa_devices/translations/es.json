@@ -1,0 +1,446 @@
+{
+    "common": {
+        "data_code": "Contrase\u00f1a de un solo uso (c\u00f3digo OTP)",
+        "data_description_code": "La contrase\u00f1a de un solo uso para iniciar sesi\u00f3n en tu cuenta. Actualmente, solo se admiten tokens de aplicaciones OTP.",
+        "data_description_country": "El pa\u00eds donde est\u00e1 registrada tu cuenta de Amazon.",
+        "data_description_password": "La contrase\u00f1a de tu cuenta de Amazon.",
+        "data_description_username": "La direcci\u00f3n de correo electr\u00f3nico de tu cuenta de Amazon.",
+        "device_id_description": "El ID del dispositivo al que se enviar\u00e1 el comando."
+    },
+    "config": {
+        "abort": {
+            "already_configured": "El servicio ya est\u00e1 configurado",
+            "cannot_connect": "No se pudo conectar",
+            "invalid_auth": "Autenticaci\u00f3n no v\u00e1lida",
+            "reauth_successful": "La autenticaci\u00f3n se volvi\u00f3 a realizar correctamente",
+            "unknown": "Error inesperado"
+        },
+        "error": {
+            "cannot_connect": "No se pudo conectar",
+            "cannot_retrieve_data": "No se pueden recuperar los datos de Amazon. Por favor, int\u00e9ntalo de nuevo m\u00e1s tarde.",
+            "invalid_auth": "Autenticaci\u00f3n no v\u00e1lida",
+            "unknown": "Error inesperado",
+            "wrong_country": "Se seleccion\u00f3 un pa\u00eds incorrecto. Por favor, selecciona el pa\u00eds donde est\u00e1 registrada tu cuenta de Amazon."
+        },
+        "flow_title": "{username}",
+        "step": {
+            "reauth_confirm": {
+                "data": {
+                    "code": "Contrase\u00f1a de un solo uso (c\u00f3digo OTP)",
+                    "password": "Contrase\u00f1a"
+                },
+                "data_description": {
+                    "code": "La contrase\u00f1a de un solo uso para iniciar sesi\u00f3n en tu cuenta. Actualmente, solo se admiten tokens de aplicaciones OTP.",
+                    "password": "La contrase\u00f1a de tu cuenta de Amazon."
+                }
+            },
+            "user": {
+                "data": {
+                    "code": "Contrase\u00f1a de un solo uso (c\u00f3digo OTP)",
+                    "country": "Pa\u00eds",
+                    "password": "Contrase\u00f1a",
+                    "username": "Nombre de usuario"
+                },
+                "data_description": {
+                    "code": "La contrase\u00f1a de un solo uso para iniciar sesi\u00f3n en tu cuenta. Actualmente, solo se admiten tokens de aplicaciones OTP.",
+                    "country": "El pa\u00eds donde est\u00e1 registrada tu cuenta de Amazon.",
+                    "password": "La contrase\u00f1a de tu cuenta de Amazon.",
+                    "username": "La direcci\u00f3n de correo electr\u00f3nico de tu cuenta de Amazon."
+                }
+            }
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "baby_cry_detection": {
+                "name": "Beb\u00e9 llorando"
+            },
+            "beeping_appliance_detection": {
+                "name": "Electrodom\u00e9stico pitando"
+            },
+            "bluetooth": {
+                "name": "Bluetooth"
+            },
+            "cough_detection": {
+                "name": "Tos"
+            },
+            "dog_bark_detection": {
+                "name": "Ladridos de perros"
+            },
+            "water_sounds_detection": {
+                "name": "Sonidos del agua"
+            }
+        },
+        "notify": {
+            "announce": {
+                "name": "Anunciar"
+            },
+            "speak": {
+                "name": "Hablar"
+            }
+        },
+        "switch": {
+            "do_not_disturb": {
+                "name": "No molestar"
+            }
+        }
+    },
+    "exceptions": {
+        "cannot_connect_with_error": {
+            "message": "Error de conexi\u00f3n: {error}"
+        },
+        "cannot_retrieve_data_with_error": {
+            "message": "Error al recuperar datos: {error}"
+        },
+        "device_serial_number_missing": {
+            "message": "Falta el n\u00famero de serie del dispositivo: {device_id}"
+        },
+        "entry_not_loaded": {
+            "message": "Entrada no cargada: {entry}"
+        },
+        "invalid_device_id": {
+            "message": "ID de dispositivo no v\u00e1lido especificado: {device_id}"
+        },
+        "invalid_sound_value": {
+            "message": "Sonido no v\u00e1lido {sound} con variante {variant} especificada"
+        }
+    },
+    "selector": {
+        "sound": {
+            "options": {
+                "airboat": "Hidrodeslizador",
+                "airport": "Aeropuerto",
+                "aliens": "Extraterrestres",
+                "amzn_sfx_copy_machine": "Fotocopiadora",
+                "amzn_sfx_cough": "Tos",
+                "amzn_sfx_crowd_applause": "Aplausos de la multitud",
+                "amzn_sfx_door_open": "Puerta abierta",
+                "amzn_sfx_door_shut": "Puerta cerrada",
+                "amzn_sfx_doorbell": "Timbre de la puerta",
+                "amzn_sfx_doorbell_chime": "Timbre de puerta",
+                "amzn_sfx_drinking_slurp": "Beber sorbo",
+                "amzn_sfx_drum_and_cymbal": "Tambores y platillos",
+                "amzn_sfx_drum_comedy": "Tambores de comedia",
+                "amzn_sfx_earthquake_rumble": "Estruendo de terremoto",
+                "amzn_sfx_electric_guitar": "Guitarra el\u00e9ctrica",
+                "amzn_sfx_elephant": "Elefante",
+                "amzn_sfx_elevator_bell_1x": "Timbre de ascensor 1x",
+                "amzn_sfx_elevator_open_bell": "Timbre de apertura del ascensor",
+                "amzn_sfx_fairy_melodic_chimes": "Campanillas mel\u00f3dicas de hadas",
+                "amzn_sfx_fairy_sparkle_chimes": "Campanillas de hadas",
+                "amzn_sfx_faucet_drip": "Goteo de grifo",
+                "amzn_sfx_faucet_running": "Grifo abierto",
+                "amzn_sfx_fireplace_crackle": "Crepitar de chimenea",
+                "amzn_sfx_fireworks": "Fuegos artificiales",
+                "amzn_sfx_fireworks_firecrackers": "Petardos de fuegos artificiales",
+                "amzn_sfx_fireworks_launch": "Lanzamiento de fuegos artificiales",
+                "amzn_sfx_fireworks_whistles": "Silbidos de fuegos artificiales",
+                "amzn_sfx_food_frying": "Fre\u00edr alimentos",
+                "amzn_sfx_footsteps": "Pasos",
+                "amzn_sfx_footsteps_muffled": "Pasos apagados",
+                "amzn_sfx_ghost_spooky": "Fantasma espeluznante",
+                "amzn_sfx_glass_on_table": "Vasos sobre la mesa",
+                "amzn_sfx_glasses_clink": "Tintineo de vasos",
+                "amzn_sfx_horse_neigh": "Relincho de caballo",
+                "amzn_sfx_horse_whinny": "Relincho de caballo",
+                "amzn_sfx_laughter": "Risas",
+                "amzn_sfx_lion_roar": "Rugido de le\u00f3n",
+                "amzn_sfx_punch": "Pu\u00f1etazo",
+                "amzn_sfx_rain": "Lluvia",
+                "amzn_sfx_rain_on_roof": "Lluvia en el tejado",
+                "amzn_sfx_sheep_baa": "Oveja balando",
+                "amzn_sfx_sheep_bleat": "Balido de las ovejas",
+                "amzn_sfx_silverware_clank": "Ruido de cubiertos",
+                "amzn_sfx_sirens": "Sirenas",
+                "amzn_sfx_sleigh_bells": "Campanas de trineo",
+                "amzn_sfx_small_stream": "Arroyo peque\u00f1o",
+                "amzn_sfx_sneeze": "Estornudo",
+                "amzn_sfx_stream": "Corriente",
+                "amzn_sfx_subway_leaving": "Salida de metro",
+                "amzn_sfx_subway_passing": "Paso de metro",
+                "amzn_sfx_subway_stopping": "Parada de metro",
+                "amzn_sfx_test_tone": "Tono de prueba",
+                "amzn_sfx_toilet_flush": "Descarga de cisterna",
+                "amzn_sfx_vacuum_off": "Aspiradora apagada",
+                "amzn_sfx_vacuum_on": "Aspiradora encendida",
+                "amzn_sfx_walking_in_mud": "Caminando en el barro",
+                "amzn_sfx_walking_in_snow": "Caminando en la nieve",
+                "amzn_sfx_walking_on_grass": "Caminando sobre la hierba",
+                "amzn_sfx_water_dripping": "Goteo de agua",
+                "amzn_sfx_water_droplets": "Gotas de agua",
+                "amzn_ui_sfx_gameshow_bridge": "Puente de programa de juegos",
+                "amzn_ui_sfx_gameshow_intro": "Presentaci\u00f3n del concurso",
+                "amzn_ui_sfx_gameshow_negative_response": "Respuesta negativa al concurso",
+                "amzn_ui_sfx_gameshow_neutral_response": "Respuesta neutral al concurso",
+                "amzn_ui_sfx_gameshow_outro": "Final del concurso",
+                "amzn_ui_sfx_gameshow_player1": "Jugador 1 de concurso",
+                "amzn_ui_sfx_gameshow_player2": "Jugador 2 de concurso",
+                "amzn_ui_sfx_gameshow_player3": "Jugador 3 de concurso",
+                "amzn_ui_sfx_gameshow_player4": "Jugador 4 de concurso",
+                "amzn_ui_sfx_gameshow_positive_response": "Respuesta positiva al concurso",
+                "amzn_ui_sfx_gameshow_tally_negative": "Conteo negativo del programa de juegos",
+                "amzn_ui_sfx_gameshow_tally_positive": "Conteo positivo del programa de juegos",
+                "amzn_ui_sfx_gameshow_waiting_loop_30s": "Bucle de espera de programa de juegos de 30 segundos",
+                "anchor": "Ancla",
+                "answering_machines": "Contestadores autom\u00e1ticos",
+                "arcs_sparks": "Chispas de arcos",
+                "arrows_bows": "Arcos y flechas",
+                "baby": "Beb\u00e9",
+                "back_up_beeps": "Pitidos de marcha atr\u00e1s",
+                "bars_restaurants": "Bares y restaurantes",
+                "baseball": "B\u00e9isbol",
+                "basketball": "Baloncesto",
+                "battles": "Batallas",
+                "beeps_tones": "Tonos de pitidos",
+                "bell": "Campana",
+                "bikes": "Bicicletas",
+                "billiards": "Billar",
+                "board_games": "Juegos de mesa",
+                "body": "Cuerpo",
+                "boing": "Boing",
+                "books": "Libros",
+                "bow_wash": "Lavado de arco",
+                "box": "Caja",
+                "break_shatter_smash": "Romper, destrozar, aplastar",
+                "breaks": "Roturas",
+                "brooms_mops": "Escobas y fregonas",
+                "bullets": "Balas",
+                "buses": "Autobuses",
+                "buzz": "Zumbido",
+                "buzz_hums": "Zumbidos",
+                "buzzers": "Zumbadores",
+                "buzzers_pistols": "Pistolas zumbadoras",
+                "cables_metal": "Cables met\u00e1licos",
+                "camera": "C\u00e1mara",
+                "cannons": "Ca\u00f1ones",
+                "car_alarm": "Alarma de coche",
+                "car_alarms": "Alarmas de coche",
+                "car_cell_phones": "Tel\u00e9fonos m\u00f3viles para coche",
+                "carnivals_fairs": "Ferias de Carnaval",
+                "cars": "Coches",
+                "casino": "Casino",
+                "casinos": "Casinos",
+                "cellar": "Bodega",
+                "chimes": "Campanillas",
+                "chimes_bells": "Campanas",
+                "chorus": "Coro",
+                "christmas": "Navidad",
+                "church_bells": "Campanas de iglesia",
+                "clock": "Reloj",
+                "cloth": "Pa\u00f1o",
+                "concrete": "Hormig\u00f3n",
+                "construction": "Construcci\u00f3n",
+                "construction_factory": "F\u00e1brica de construcci\u00f3n",
+                "crowds": "Multitudes",
+                "debris": "Escombros",
+                "dinosaurs": "Dinosaurios",
+                "dripping": "Goteo",
+                "drops": "Gotas",
+                "electric": "El\u00e9ctrico",
+                "electrical": "El\u00e9ctrico",
+                "elevator": "Ascensor",
+                "explosions": "Explosiones",
+                "factory": "F\u00e1brica",
+                "falls": "Cataratas",
+                "fax_scanner_copier": "Fax Esc\u00e1ner Copiadora",
+                "fight": "Lucha",
+                "fire": "Fuego",
+                "fire_extinguisher": "Extintor",
+                "fireballs": "Bolas de fuego",
+                "fireworks": "Fuegos artificiales",
+                "fishing_pole": "Ca\u00f1a de pescar",
+                "flags": "Banderas",
+                "football": "F\u00fatbol americano",
+                "footsteps": "Pasos",
+                "futuristic": "Futurista",
+                "futuristic_ship": "Barco futurista",
+                "gameshow": "Espect\u00e1culo de juegos",
+                "gear": "Engranaje",
+                "ghosts_demons": "Fantasmas Demonios",
+                "giant_monster": "Monstruo gigante",
+                "glass": "Vaso",
+                "glasses_clink": "Tintineo de vasos",
+                "golf": "Golf",
+                "gorilla": "Gorila",
+                "grenade_lanucher": "Lanzagranadas",
+                "griffen": "Griffen",
+                "gyms_locker_rooms": "Vestuarios de gimnasios",
+                "handgun_loading": "Carga de pistola",
+                "handgun_shot": "Disparo de pistola",
+                "handle": "Manejar",
+                "hands": "Manos",
+                "heartbeats_ekg": "Electrocardiograma de latidos card\u00edacos",
+                "helicopter": "Helic\u00f3ptero",
+                "high_tech": "Alta tecnolog\u00eda",
+                "hit_punch_slap": "Golpe, pu\u00f1etazo, bofetada",
+                "hits": "Hits",
+                "horns": "Trompetas",
+                "horror": "Horror",
+                "hot_tub_filling_up": "Llenando el jacuzzi",
+                "human": "Humano",
+                "human_vocals": "Voces humanas",
+                "hygene": "Higiene",
+                "ice_skating": "Patinaje sobre hielo",
+                "ignitions": "Encendido",
+                "infantry": "Infanter\u00eda",
+                "intro": "Intro",
+                "jet": "Jet",
+                "juggling": "Malabares",
+                "key_lock": "Cerradura de llave",
+                "kids": "Ni\u00f1os",
+                "knocks": "Golpes",
+                "lab_equip": "Equipo de laboratorio",
+                "lacrosse": "Lacrosse",
+                "lamps_lanterns": "L\u00e1mparas linternas",
+                "leather": "Piel",
+                "liquid_suction": "Aspiraci\u00f3n de l\u00edquidos",
+                "locker_doors": "Puertas de taquillas",
+                "machine_gun": "Ametralladora",
+                "magic_spells": "Hechizos m\u00e1gicos",
+                "medium_large_explosions": "Explosiones medianas y grandes",
+                "metal": "Metal",
+                "modern_rings": "Anillos modernos",
+                "money_coins": "Monedas",
+                "motorcycles": "Motocicletas",
+                "movement": "Movimiento",
+                "moves": "Movimientos",
+                "nature": "Naturaleza",
+                "oar_boat": "Bote de remos",
+                "pagers": "Buscapersonas",
+                "paintball": "Paintball",
+                "paper": "Papel",
+                "parachute": "Paraca\u00eddas",
+                "pay_phones": "Tel\u00e9fonos p\u00fablicos",
+                "phone_beeps": "Pitidos del tel\u00e9fono",
+                "pigmy_bats": "Murci\u00e9lagos pigmeos",
+                "pills": "Pastillas",
+                "pour_water": "Verter agua",
+                "power_up_down": "Encendido y apagado",
+                "printers": "Impresoras",
+                "prison": "Prisi\u00f3n",
+                "public_space": "Espacio p\u00fablico",
+                "racquetball": "Racquetball",
+                "radios_static": "Radios est\u00e1ticas",
+                "rain": "Lluvia",
+                "rc_airplane": "Avi\u00f3n RC",
+                "rc_car": "Coche RC",
+                "refrigerators_freezers": "Frigor\u00edficos congeladores",
+                "regular": "Regular",
+                "respirator": "Respirador",
+                "rifle": "Rifle",
+                "roller_coaster": "Monta\u00f1a rusa",
+                "rollerskates_rollerblades": "Patines en l\u00ednea RollerBlades",
+                "room_tones": "Tonos de habitaci\u00f3n",
+                "ropes_climbing": "Cuerdas de escalada",
+                "rotary_rings": "Anillos giratorios",
+                "rowboat_canoe": "Canoa de remos",
+                "rubber": "Goma",
+                "running": "Correr",
+                "sails": "Velas",
+                "sand_gravel": "Arena y grava",
+                "screen_doors": "Puertas mosquiteras",
+                "screens": "Pantallas",
+                "seats_stools": "Asientos taburetes",
+                "servos": "Servos",
+                "shoes_boots": "Zapatos botas",
+                "shotgun": "Escopeta",
+                "shower": "Ducha",
+                "sink_faucet": "Grifo de fregadero",
+                "sink_filling_water": "Agua de llenado del fregadero",
+                "sink_run_and_off": "Sink Run And Off",
+                "sink_water_splatter": "Salpicaduras de agua del fregadero",
+                "sirens": "Sirenas",
+                "skateboards": "Monopatines",
+                "ski": "Esqu\u00ed",
+                "skids_tires": "Neum\u00e1ticos de patines",
+                "sled": "Trineo",
+                "slides": "Diapositivas",
+                "small_explosions": "Peque\u00f1as explosiones",
+                "snow": "Nieve",
+                "snowmobile": "Moto de nieve",
+                "soldiers": "Soldados",
+                "splash_water": "Salpicaduras de agua",
+                "splashes_sprays": "Salpicaduras de Sprays",
+                "sports_whistles": "Silbatos deportivos",
+                "squeaks": "Chirridos",
+                "squeaky": "Squeaky",
+                "stairs": "Escaleras",
+                "steam": "Vapor",
+                "submarine_diesel": "Submarino di\u00e9sel",
+                "swing_doors": "Puertas batientes",
+                "switches_levers": "Palancas de interruptores",
+                "swords": "Espadas",
+                "tape": "Cinta",
+                "tape_machine": "M\u00e1quina de cinta",
+                "televisions_shows": "Programas de televisi\u00f3n",
+                "tennis_pingpong": "Tenis Ping-Pong",
+                "textile": "Textil",
+                "throw": "Lanzar",
+                "thunder": "Trueno",
+                "ticks": "Ticks",
+                "timer": "Temporizador",
+                "toilet_flush": "Descarga de cisterna",
+                "tone": "Tono",
+                "tones_noises": "Tonos ruidos",
+                "toys": "Juguetes",
+                "tractors": "Tractores",
+                "traffic": "Tr\u00e1fico",
+                "train": "Tren",
+                "trucks_vans": "Camiones Furgonetas",
+                "turnstiles": "Torniquetes",
+                "typing": "Mecanograf\u00eda",
+                "umbrella": "Paraguas",
+                "underwater": "Bajo el agua",
+                "vampires": "Vampiros",
+                "various": "Varios",
+                "video_tunes": "Melod\u00edas de v\u00eddeo",
+                "volcano_earthquake": "Terremoto volc\u00e1nico",
+                "watches": "Relojes",
+                "water": "Agua",
+                "water_running": "Agua corriendo",
+                "werewolves": "Hombres lobo",
+                "winches_gears": "Engranajes",
+                "wind": "Viento",
+                "wood": "Madera",
+                "wood_boat": "Barco de madera",
+                "woosh": "Woosh",
+                "zap": "Zap",
+                "zippers": "Zippers"
+            }
+        }
+    },
+    "services": {
+        "send_sound": {
+            "description": "Env\u00eda un sonido a un dispositivo",
+            "fields": {
+                "device_id": {
+                    "description": "El ID del dispositivo al que se enviar\u00e1 el comando.",
+                    "name": "Dispositivo"
+                },
+                "sound": {
+                    "description": "El archivo de sonido a reproducir.",
+                    "name": "Archivo de sonido de Alexa Skill"
+                },
+                "sound_variant": {
+                    "description": "La variante del sonido a reproducir.",
+                    "name": "Variante de sonido"
+                }
+            },
+            "name": "Enviar sonido"
+        },
+        "send_text_command": {
+            "description": "Env\u00eda un comando de texto a un dispositivo",
+            "fields": {
+                "device_id": {
+                    "description": "El ID del dispositivo al que se enviar\u00e1 el comando.",
+                    "name": "Dispositivo"
+                },
+                "text_command": {
+                    "description": "El comando de texto a enviar.",
+                    "name": "Comando de texto de Alexa"
+                }
+            },
+            "name": "Enviar comando de texto"
+        }
+    }
+}

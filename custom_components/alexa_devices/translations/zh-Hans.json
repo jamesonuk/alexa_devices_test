@@ -1,0 +1,385 @@
+{
+    "common": {
+        "data_code": "\u4e00\u6b21\u6027\u5bc6\u7801\uff08OTP \u4ee3\u7801\uff09",
+        "data_description_code": "\u7528\u4e8e\u767b\u5f55\u60a8\u8d26\u6237\u7684\u4e00\u6b21\u6027\u5bc6\u7801\u3002\u76ee\u524d\u4ec5\u652f\u6301\u6765\u81ea OTP \u5e94\u7528\u7a0b\u5e8f\u7684\u4ee4\u724c\u3002",
+        "data_description_country": "\u60a8\u4e9a\u9a6c\u900a\u8d26\u6237\u6ce8\u518c\u7684\u56fd\u5bb6/\u5730\u533a\u3002",
+        "data_description_password": "\u60a8\u7684\u4e9a\u9a6c\u900a\u8d26\u6237\u7684\u5bc6\u7801\u3002",
+        "data_description_username": "\u60a8\u7684\u4e9a\u9a6c\u900a\u8d26\u6237\u7684\u7535\u5b50\u90ae\u4ef6\u5730\u5740\u3002",
+        "device_id_description": "\u53d1\u9001\u547d\u4ee4\u7684\u8bbe\u5907\u7684 ID \u3002"
+    },
+    "config": {
+        "abort": {
+            "already_configured": "\u670d\u52a1\u5df2\u914d\u7f6e",
+            "cannot_connect": "\u8fde\u63a5\u5931\u8d25",
+            "invalid_auth": "\u8eab\u4efd\u9a8c\u8bc1\u65e0\u6548",
+            "reauth_successful": "\u91cd\u65b0\u8ba4\u8bc1\u6210\u529f",
+            "unknown": "\u610f\u5916\u9519\u8bef"
+        },
+        "error": {
+            "cannot_connect": "\u8fde\u63a5\u5931\u8d25",
+            "cannot_retrieve_data": "\u65e0\u6cd5\u4ece Amazon \u68c0\u7d22\u6570\u636e\u3002\u8bf7\u7a0d\u540e\u91cd\u8bd5\u3002",
+            "invalid_auth": "\u8eab\u4efd\u9a8c\u8bc1\u65e0\u6548",
+            "unknown": "\u610f\u5916\u9519\u8bef",
+            "wrong_country": "\u9009\u62e9\u7684\u56fd\u5bb6/\u5730\u533a\u6709\u8bef\u3002\u8bf7\u9009\u62e9\u60a8\u6ce8\u518c\u4e9a\u9a6c\u900a\u8d26\u6237\u7684\u56fd\u5bb6/\u5730\u533a\u3002"
+        },
+        "flow_title": "{username}",
+        "step": {
+            "reauth_confirm": {
+                "data": {
+                    "code": "\u4e00\u6b21\u6027\u5bc6\u7801\uff08OTP \u4ee3\u7801\uff09",
+                    "password": "\u5bc6\u7801"
+                },
+                "data_description": {
+                    "code": "\u7528\u4e8e\u767b\u5f55\u60a8\u8d26\u6237\u7684\u4e00\u6b21\u6027\u5bc6\u7801\u3002\u76ee\u524d\u4ec5\u652f\u6301\u6765\u81ea OTP \u5e94\u7528\u7a0b\u5e8f\u7684\u4ee4\u724c\u3002",
+                    "password": "\u60a8\u7684\u4e9a\u9a6c\u900a\u8d26\u6237\u7684\u5bc6\u7801\u3002"
+                }
+            },
+            "user": {
+                "data": {
+                    "code": "\u4e00\u6b21\u6027\u5bc6\u7801\uff08OTP \u4ee3\u7801\uff09",
+                    "country": "\u56fd\u5bb6\u6216\u5730\u533a",
+                    "password": "\u5bc6\u7801",
+                    "username": "\u7528\u6237\u540d"
+                },
+                "data_description": {
+                    "code": "\u7528\u4e8e\u767b\u5f55\u60a8\u8d26\u6237\u7684\u4e00\u6b21\u6027\u5bc6\u7801\u3002\u76ee\u524d\u4ec5\u652f\u6301\u6765\u81ea OTP \u5e94\u7528\u7a0b\u5e8f\u7684\u4ee4\u724c\u3002",
+                    "country": "\u60a8\u4e9a\u9a6c\u900a\u8d26\u6237\u6ce8\u518c\u7684\u56fd\u5bb6/\u5730\u533a\u3002",
+                    "password": "\u60a8\u7684\u4e9a\u9a6c\u900a\u8d26\u6237\u7684\u5bc6\u7801\u3002",
+                    "username": "\u60a8\u7684\u4e9a\u9a6c\u900a\u8d26\u6237\u7684\u7535\u5b50\u90ae\u4ef6\u5730\u5740\u3002"
+                }
+            }
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "baby_cry_detection": {
+                "name": "\u5a74\u513f\u54ed\u95f9"
+            },
+            "beeping_appliance_detection": {
+                "name": "\u8702\u9e23\u5668"
+            },
+            "bluetooth": {
+                "name": "\u84dd\u7259"
+            },
+            "cough_detection": {
+                "name": "\u54b3\u55fd"
+            },
+            "dog_bark_detection": {
+                "name": "\u72d7\u53eb\u58f0"
+            },
+            "water_sounds_detection": {
+                "name": "\u6c34\u58f0"
+            }
+        },
+        "notify": {
+            "announce": {
+                "name": "\u64ad\u62a5"
+            },
+            "speak": {
+                "name": "\u8bf4\u8bdd"
+            }
+        },
+        "switch": {
+            "do_not_disturb": {
+                "name": "\u8bf7\u52ff\u6253\u6270"
+            }
+        }
+    },
+    "exceptions": {
+        "cannot_connect_with_error": {
+            "message": "\u8fde\u63a5\u9519\u8bef\uff1a{error}"
+        },
+        "cannot_retrieve_data_with_error": {
+            "message": "\u68c0\u7d22\u6570\u636e\u65f6\u51fa\u9519\uff1a{error}"
+        }
+    },
+    "selector": {
+        "sound": {
+            "options": {
+                "amzn_sfx_bell_timer": "\u94c3\u58f0\u8ba1\u65f6\u5668",
+                "amzn_sfx_bicycle_bell_ring": "\u81ea\u884c\u8f66\u94c3\u94db",
+                "amzn_sfx_bird_chickadee_chirp_1x": "\u5c71\u96c0\u9e23\u53eb 1x",
+                "amzn_sfx_bird_chickadee_chirps": "\u5c71\u96c0\u9e23\u53eb",
+                "amzn_sfx_bird_forest": "\u9e1f\u6797",
+                "amzn_sfx_bird_forest_short": "\u9e1f\u6797 \u77ed",
+                "amzn_sfx_car_honk_1x": "\u6c7d\u8f66\u9e23\u7b1b 1 \u6b21",
+                "amzn_sfx_car_honk_2x": "\u6c7d\u8f66\u9e23\u7b1b 2 \u6b21",
+                "amzn_sfx_car_honk_3x": "\u6c7d\u8f66\u9e23\u7b1b 3 \u6b21",
+                "amzn_sfx_door_open": "\u95e8\u6253\u5f00",
+                "amzn_sfx_door_shut": "\u95e8\u5173\u4e0a",
+                "amzn_sfx_doorbell": "\u95e8\u94c3",
+                "amzn_sfx_doorbell_buzz": "\u95e8\u94c3\u55e1\u55e1\u54cd",
+                "amzn_sfx_doorbell_chime": "\u95e8\u94c3\u8b66\u62a5\u58f0",
+                "amzn_sfx_sheep_baa": "\u7f8a\u54a9\u54a9",
+                "amzn_sfx_sheep_bleat": "\u7f8a\u54a9\u54a9\u58f0",
+                "amzn_sfx_silverware_clank": "\u94f6\u5668\u53ee\u5f53\u54cd",
+                "amzn_sfx_sirens": "\u8b66\u62a5\u5668",
+                "amzn_sfx_sleigh_bells": "\u96ea\u6a47\u94c3",
+                "amzn_sfx_small_stream": "\u5c0f\u6eaa",
+                "amzn_sfx_sneeze": "\u55b7\u568f",
+                "amzn_sfx_stream": "\u6eaa\u6d41",
+                "amzn_sfx_strong_wind_desert": "\u5f3a\u98ce\u6c99\u6f20",
+                "amzn_sfx_strong_wind_whistling": "\u5f3a\u98ce\u547c\u5578",
+                "amzn_sfx_subway_leaving": "\u5730\u94c1\u79bb\u5f00",
+                "amzn_sfx_subway_passing": "\u5730\u94c1\u901a\u8fc7",
+                "amzn_sfx_subway_stopping": "\u5730\u94c1\u505c\u9760",
+                "amzn_sfx_swoosh_cartoon_fast": "\u8010\u514b\u5361\u901a\u5feb",
+                "amzn_sfx_vacuum_off": "\u626b\u5730\u673a\u5173\u95ed",
+                "amzn_sfx_vacuum_on": "\u626b\u5730\u673a\u5f00\u542f",
+                "amzn_ui_sfx_gameshow_bridge": "\u6e38\u620f\u8282\u76ee\u6865",
+                "amzn_ui_sfx_gameshow_countdown_loop_32s_full": "\u6e38\u620f\u8282\u76ee\u5012\u8ba1\u65f6\u5faa\u73af 32 \u79d2\uff08\u5b8c\u6574\uff09",
+                "amzn_ui_sfx_gameshow_countdown_loop_64s_full": "\u6e38\u620f\u8282\u76ee\u5012\u8ba1\u65f6\u5faa\u73af 64 \u79d2\uff08\u5b8c\u6574\uff09",
+                "amzn_ui_sfx_gameshow_countdown_loop_64s_minimal": "\u6e38\u620f\u8282\u76ee\u5012\u8ba1\u65f6\u5faa\u73af 64 \u79d2\uff08\u6700\u5c0f\uff09",
+                "amzn_ui_sfx_gameshow_intro": "\u6e38\u620f\u8282\u76ee\u4ecb\u7ecd",
+                "amzn_ui_sfx_gameshow_negative_response": "\u6e38\u620f\u8282\u76ee\u8d1f\u9762\u53cd\u54cd",
+                "amzn_ui_sfx_gameshow_neutral_response": "\u6e38\u620f\u8282\u76ee\u4e2d\u6027\u53cd\u54cd",
+                "amzn_ui_sfx_gameshow_outro": "\u6e38\u620f\u8282\u76ee\u7ed3\u5c40",
+                "amzn_ui_sfx_gameshow_player1": "\u6e38\u620f\u8282\u76ee\u73a9\u5bb6 1",
+                "amzn_ui_sfx_gameshow_player2": "\u6e38\u620f\u8282\u76ee\u73a9\u5bb6 2",
+                "amzn_ui_sfx_gameshow_player3": "\u6e38\u620f\u8282\u76ee\u73a9\u5bb6 3",
+                "amzn_ui_sfx_gameshow_player4": "\u6e38\u620f\u8282\u76ee\u73a9\u5bb6 4",
+                "amzn_ui_sfx_gameshow_positive_response": "\u6e38\u620f\u8282\u76ee\u6b63\u9762\u53cd\u54cd",
+                "amzn_ui_sfx_gameshow_tally_negative": "\u6e38\u620f\u8282\u76ee\u7edf\u8ba1\u8d1f\u9762",
+                "amzn_ui_sfx_gameshow_tally_positive": "\u6e38\u620f\u8282\u76ee\u7edf\u8ba1\u6b63\u9762",
+                "amzn_ui_sfx_gameshow_waiting_loop_30s": "\u6e38\u620f\u8282\u76ee\u7b49\u5f85\u5faa\u73af 30 \u79d2",
+                "anchor": "\u951a",
+                "answering_machines": "\u7b54\u5f55\u673a",
+                "arcs_sparks": "\u7535\u5f27\u706b\u82b1",
+                "beeps_tones": "\u561f\u561f\u58f0",
+                "bell": "\u949f",
+                "bikes": "\u81ea\u884c\u8f66",
+                "billiards": "\u53f0\u7403",
+                "board_games": "\u68cb\u76d8\u6e38\u620f",
+                "body": "\u8eab\u4f53",
+                "boing": "\u7830",
+                "books": "\u56fe\u4e66",
+                "bow_wash": "\u5f13\u6d17",
+                "box": "\u76d2\u5b50",
+                "break_shatter_smash": "\u6253\u7834 \u7c89\u788e \u51fb\u788e",
+                "breaks": "\u4f11\u606f",
+                "brooms_mops": "\u626b\u5e1a \u62d6\u628a",
+                "bullets": "\u9879\u76ee\u7b26\u53f7",
+                "buses": "\u516c\u4ea4\u8f66",
+                "buzz": "\u55e1\u55e1\u58f0",
+                "buzz_hums": "\u55e1\u55e1\u55e1",
+                "buzzers": "\u8702\u9e23\u5668",
+                "buzzers_pistols": "\u8702\u9e23\u5668\u624b\u67aa",
+                "cables_metal": "\u91d1\u5c5e\u7535\u7f06",
+                "camera": "\u6444\u50cf\u5934",
+                "cannons": "\u5927\u70ae",
+                "car_alarm": "\u6c7d\u8f66\u9632\u76d7\u5668",
+                "car_alarms": "\u6c7d\u8f66\u8b66\u62a5\u5668",
+                "car_cell_phones": "\u8f66\u8f7d\u624b\u673a",
+                "carnivals_fairs": "\u5609\u5e74\u534e\u4f1a",
+                "cars": "\u6c7d\u8f66",
+                "casino": "\u8d4c\u573a",
+                "casinos": "\u5a31\u4e50\u573a",
+                "cellar": "\u5730\u7a96",
+                "chimes": "\u7f16\u949f",
+                "chimes_bells": "\u98ce\u94c3",
+                "chorus": "\u5408\u5531",
+                "christmas": "\u5723\u8bde\u8282",
+                "church_bells": "\u6559\u5802\u949f\u58f0",
+                "clock": "\u65f6\u949f",
+                "cloth": "\u5e03",
+                "concrete": "\u6df7\u51dd\u571f",
+                "construction": "\u5efa\u9020",
+                "construction_factory": "\u5efa\u7b51\u5de5\u5382",
+                "crashes": "\u5d29\u6e83",
+                "crowds": "\u4eba\u7fa4",
+                "debris": "\u788e\u7247",
+                "dining_kitchens": "\u9910\u5385 \u53a8\u623f",
+                "dinosaurs": "\u6050\u9f99",
+                "dripping": "\u6ef4\u6c34",
+                "drops": "\u6389\u843d",
+                "electric": "\u7535",
+                "electrical": "\u7535\u6c14",
+                "elevator": "\u7535\u68af",
+                "evolution_monsters": "\u8fdb\u5316\u602a\u7269",
+                "explosions": "\u7206\u70b8",
+                "factory": "\u5de5\u5382",
+                "falls": "\u7011\u5e03",
+                "fax_scanner_copier": "\u4f20\u771f\u673a \u626b\u63cf\u4eea \u590d\u5370\u673a",
+                "feedback_mics": "\u53cd\u9988\u9ea6\u514b\u98ce",
+                "fight": "\u4e89\u5435",
+                "fire": "\u706b",
+                "fire_extinguisher": "\u706d\u706b\u5668",
+                "fireballs": "\u706b\u7403",
+                "gyms_locker_rooms": "\u5065\u8eab\u623f\u66f4\u8863\u5ba4",
+                "handgun_loading": "\u624b\u67aa\u88c5\u586b",
+                "handgun_shot": "\u624b\u67aa\u5c04\u51fb",
+                "handle": "\u628a\u624b",
+                "hands": "\u624b",
+                "heartbeats_ekg": "\u5fc3\u8df3\u5fc3\u7535\u56fe",
+                "helicopter": "\u76f4\u5347\u673a",
+                "high_tech": "\u9ad8\u79d1\u6280",
+                "hit_punch_slap": "\u51fb\u6253 \u62f3\u6253 \u8033\u5149",
+                "hits": "\u70ed\u95e8\u6b4c\u66f2",
+                "horns": "\u5587\u53ed",
+                "horror": "\u6050\u6016",
+                "hot_tub_filling_up": "\u70ed\u6c34\u6d74\u7f38\u6ce8\u6ee1\u6c34",
+                "human": "\u4eba\u7c7b",
+                "human_vocals": "\u4eba\u58f0",
+                "hygene": "\u536b\u751f\u95f4",
+                "ice_skating": "\u6ed1\u51b0",
+                "ignitions": "\u70b9\u706b",
+                "infantry": "\u6b65\u5175",
+                "intro": "\u524d\u594f",
+                "jet": "\u55b7\u5c04",
+                "juggling": "\u620f\u6cd5",
+                "key_lock": "\u94a5\u5319\u9501",
+                "kids": "\u5b69\u5b50\u4eec",
+                "knocks": "\u6572\u95e8\u58f0",
+                "lab_equip": "\u5b9e\u9a8c\u5ba4\u8bbe\u5907",
+                "lacrosse": "\u957f\u66f2\u68cd\u7403",
+                "lamps_lanterns": "\u706f\u5177\u706f\u7b3c",
+                "leather": "\u76ae\u9769",
+                "liquid_suction": "\u6db2\u4f53\u62bd\u5438",
+                "locker_doors": "\u50a8\u7269\u67dc\u95e8",
+                "machine_gun": "\u673a\u67aa",
+                "magic_spells": "\u9b54\u6cd5\u5492\u8bed",
+                "medium_large_explosions": "\u4e2d\u5927\u578b\u7206\u70b8",
+                "metal": "\u91d1\u5c5e",
+                "modern_rings": "\u6212\u6307",
+                "money_coins": "\u94b1\u5e01",
+                "motorcycles": "\u6469\u6258\u8f66",
+                "movement": "\u79fb\u52a8",
+                "moves": "\u79fb\u4f4d",
+                "nature": "\u81ea\u7136",
+                "oar_boat": "\u6868\u8239",
+                "pagers": "\u4f20\u547c\u673a",
+                "paintball": "\u5f69\u5f39\u5c04\u51fb",
+                "paper": "\u7eb8\u5f20",
+                "phone_beeps": "\u7535\u8bdd\u8702\u9e23\u58f0",
+                "pigmy_bats": "\u4f8f\u5112\u8759\u8760",
+                "pills": "\u836f\u4e38",
+                "pour_water": "\u5012\u6c34",
+                "power_up_down": "\u901a\u7535\u65ad\u7535",
+                "printers": "\u6253\u5370\u673a",
+                "prison": "\u76d1\u72f1",
+                "public_space": "\u516c\u5171\u7a7a\u95f4",
+                "racquetball": "\u58c1\u7403",
+                "radios_static": "\u65e0\u7ebf\u7535\u9759\u6001",
+                "rain": "\u96e8",
+                "rc_airplane": "\u9065\u63a7\u98de\u673a",
+                "rc_car": "\u9065\u63a7\u8f66",
+                "refrigerators_freezers": "\u51b0\u7bb1 \u51b0\u67dc",
+                "regular": "\u5e38\u89c4",
+                "respirator": "\u547c\u5438\u5668",
+                "rifle": "\u6b65\u67aa",
+                "roller_coaster": "\u8fc7\u5c71\u8f66",
+                "rollerskates_rollerblades": "\u65f1\u51b0\u978b",
+                "room_tones": "\u623f\u95f4\u8272\u8c03",
+                "ropes_climbing": "\u7ef3\u7d22\u6500\u722c",
+                "rotary_rings": "\u65cb\u8f6c\u73af",
+                "rowboat_canoe": "\u5212\u8247 \u72ec\u6728\u821f",
+                "rubber": "\u6a61\u76ae",
+                "running": "\u8fd0\u884c\u4e2d",
+                "sails": "\u5e06",
+                "sand_gravel": "\u6c99\u783e",
+                "screen_doors": "\u7eb1\u95e8",
+                "screens": "\u5c4f\u5e55",
+                "seats_stools": "\u5ea7\u6905\u51f3\u5b50",
+                "servos": "\u4f3a\u670d\u5668",
+                "shoes_boots": "\u978b\u5b50\u9774\u5b50",
+                "shotgun": "\u9730\u5f39\u67aa",
+                "shower": "\u6dcb\u6d74",
+                "sink_faucet": "\u6c34\u69fd\u6c34\u9f99\u5934",
+                "sink_filling_water": "\u6c34\u69fd\u6ce8\u6c34",
+                "sink_run_and_off": "\u6c34\u69fd\u8fd0\u884c\u548c\u5173\u95ed",
+                "sink_water_splatter": "\u6c34\u69fd\u6c34\u6e85",
+                "sirens": "\u8b66\u62a5\u5668",
+                "skateboards": "\u6ed1\u677f",
+                "ski": "\u6ed1\u96ea",
+                "skids_tires": "\u9632\u6ed1\u8f6e\u80ce",
+                "sled": "\u96ea\u6a47",
+                "slides": "\u5e7b\u706f\u7247",
+                "small_explosions": "\u5c0f\u7206\u70b8",
+                "snow": "\u96ea",
+                "snowmobile": "\u96ea\u5730\u6469\u6258",
+                "soldiers": "\u58eb\u5175",
+                "splash_water": "\u6cfc\u6c34",
+                "splashes_sprays": "\u55b7\u6e85\u55b7\u96fe",
+                "sports_whistles": "\u8fd0\u52a8\u53e3\u54e8",
+                "squeaks": "\u5431\u5431\u58f0",
+                "squeaky": "\u5431\u5431\u53eb",
+                "stairs": "\u697c\u68af",
+                "steam": "\u84b8\u6c7d",
+                "submarine_diesel": "\u6f5c\u8247\u67f4\u6cb9\u673a",
+                "swing_doors": "\u65cb\u8f6c\u95e8",
+                "switches_levers": "\u5f00\u5173\u6746",
+                "swords": "\u5251",
+                "tape": "\u78c1\u5e26",
+                "tape_machine": "\u78c1\u5e26\u673a",
+                "televisions_shows": "\u7535\u89c6\u8282\u76ee",
+                "tennis_pingpong": "\u7f51\u7403 \u4e52\u4e53\u7403",
+                "textile": "\u7eba\u7ec7\u54c1",
+                "throw": "\u6254\u51fa",
+                "thunder": "\u96f7\u7535",
+                "ticks": "\u6ef4\u7b54\u58f0",
+                "timer": "\u8ba1\u65f6\u5668",
+                "toilet_flush": "\u9a6c\u6876\u51b2\u6c34",
+                "tone": "\u97f3\u8c03",
+                "tones_noises": "\u97f3\u8c03\u566a\u97f3",
+                "toys": "\u73a9\u5177",
+                "tractors": "\u62d6\u62c9\u673a",
+                "traffic": "\u4ea4\u901a",
+                "train": "\u706b\u8f66",
+                "trucks_vans": "\u5361\u8f66 \u8d27\u8f66",
+                "turnstiles": "\u65cb\u8f6c\u6805\u95e8",
+                "typing": "\u6253\u5b57",
+                "umbrella": "\u4f1e",
+                "underwater": "\u6c34\u4e0b",
+                "vampires": "\u5438\u8840\u9b3c",
+                "various": "\u5404\u79cd\u5404\u6837",
+                "video_tunes": "\u89c6\u9891\u97f3\u4e50",
+                "volcano_earthquake": "\u706b\u5c71\u5730\u9707",
+                "watches": "\u624b\u8868",
+                "water": "\u6c34",
+                "water_running": "\u6c34\u6d41",
+                "werewolves": "\u72fc\u4eba",
+                "winches_gears": "\u7ede\u76d8\u9f7f\u8f6e",
+                "wind": "\u98ce\u58f0",
+                "wood": "\u6728\u5934",
+                "wood_boat": "\u6728\u8239",
+                "woosh": "\u55d6",
+                "zap": "\u6025\u901f",
+                "zippers": "\u62c9\u94fe"
+            }
+        }
+    },
+    "services": {
+        "send_sound": {
+            "description": "\u5411\u8bbe\u5907\u53d1\u9001\u58f0\u97f3",
+            "fields": {
+                "device_id": {
+                    "description": "\u53d1\u9001\u547d\u4ee4\u7684\u8bbe\u5907\u7684 ID \u3002",
+                    "name": "\u8bbe\u5907"
+                },
+                "sound": {
+                    "description": "\u8981\u64ad\u653e\u7684\u58f0\u97f3\u6587\u4ef6\u3002",
+                    "name": "Alexa Skill \u58f0\u97f3\u6587\u4ef6"
+                },
+                "sound_variant": {
+                    "description": "\u8981\u64ad\u653e\u7684\u58f0\u97f3\u7684\u53d8\u4f53\u3002",
+                    "name": "\u58f0\u97f3\u53d8\u4f53"
+                }
+            },
+            "name": "\u53d1\u9001\u58f0\u97f3"
+        },
+        "send_text_command": {
+            "description": "\u5411\u8bbe\u5907\u53d1\u9001\u6587\u672c\u547d\u4ee4",
+            "fields": {
+                "device_id": {
+                    "description": "\u53d1\u9001\u547d\u4ee4\u7684\u8bbe\u5907\u7684 ID \u3002",
+                    "name": "\u8bbe\u5907"
+                },
+                "text_command": {
+                    "description": "\u8981\u53d1\u9001\u7684\u6587\u672c\u547d\u4ee4\u3002",
+                    "name": "Alexa \u6587\u672c\u547d\u4ee4"
+                }
+            },
+            "name": "\u53d1\u9001\u6587\u672c\u547d\u4ee4"
+        }
+    }
+}

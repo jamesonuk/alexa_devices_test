@@ -1,0 +1,18 @@
+{
+    "config": {
+        "step": {
+            "reauth_confirm": {
+                "data": {
+                    "password": "\uc554\ud638"
+                }
+            },
+            "user": {
+                "data": {
+                    "country": "\uad6d\uac00",
+                    "password": "\uc554\ud638",
+                    "username": "\uc0ac\uc6a9\uc790 \uc774\ub984"
+                }
+            }
+        }
+    }
+}
