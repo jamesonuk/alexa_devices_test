@@ -9,5 +9,5 @@
   "loggers": ["aioamazondevices"],
   "quality_scale": "silver",
   "requirements": ["git+https://github.com/chemelli74/aioamazondevices.git@refs/pull/457/head#aioamazondevices==5.1.0-alpha.22"],
-  "version": "457.3"
+  "version": "457.4"
 }
