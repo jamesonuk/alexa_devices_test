@@ -44,7 +44,7 @@ async def async_migrate_entry(hass: HomeAssistant, entry: AmazonConfigEntry) -> 
     """Migrate old entry."""
     _LOGGER.warning("Testing: Current Version is %s.%s", entry.version, entry.minor_version)
     country_exists = CONF_COUNTRY in entry.data
-    site_exists = "site" in entry.data["CONF_LOGIN_DATA"]
+    site_exists = "site" in entry.data[CONF_LOGIN_DATA]
     site_exists_wrong_place = "site" in entry.data
     _LOGGER.warning("Testing: Country: %s , Site: %s , Site Wrong Place: %s",
                     country_exists, site_exists, site_exists_wrong_place)
