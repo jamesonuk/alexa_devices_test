@@ -42,7 +42,22 @@ async def async_setup_entry(hass: HomeAssistant, entry: AmazonConfigEntry) -> bo
 
 async def async_migrate_entry(hass: HomeAssistant, entry: AmazonConfigEntry) -> bool:
     """Migrate old entry."""
-    if entry.version == 1 and entry.minor_version == 1:
+    _LOGGER.warning("Testing: Current Version is %s.%s", entry.version, entry.minor_version)
+    country_exists = CONF_COUNTRY in entry.data
+    site_exists = "site" in entry.data["CONF_LOGIN_DATA"]
+    site_exists_wrong_place = "site" in entry.data
+    _LOGGER.warning("Testing: Country: %s , Site: %s , Site Wrong Place: %s",
+                    country_exists, site_exists, site_exists_wrong_place)
+
+    if site_exists_wrong_place:
+        _LOGGER.warning('Fixing invalid "site" setup from previous test version')
+        new_data = entry.data.copy()
+        new_data[CONF_LOGIN_DATA]["site"] = new_data["site"]
+        new_data.pop("site")
+        hass.config_entries.async_update_entry(
+            entry, data=new_data, version=1, minor_version=2
+        )
+    elif entry.version == 1 and entry.minor_version == 1:
         _LOGGER.debug(
             "Migrating from version %s.%s", entry.version, entry.minor_version
         )
