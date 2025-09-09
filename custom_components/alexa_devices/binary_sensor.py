@@ -35,6 +35,7 @@ class AmazonBinarySensorEntityDescription(BinarySensorEntityDescription):
 
     is_on_fn: Callable[[AmazonDevice, str], bool]
     is_supported: Callable[[AmazonDevice, str], bool] = lambda device, key: True
+    is_available_fn: Callable[[AmazonDevice, str], bool] = lambda device, key: True
 
 
 BINARY_SENSORS: Final = (
@@ -51,8 +52,12 @@ BINARY_SENSORS: Final = (
             device.sensors[key].value != SENSOR_STATE_OFF
         ),
         is_supported=lambda device, key: device.sensors.get(key) is not None,
+        is_available_fn=lambda device, key: (
+            device.online and device.sensors[key].error is False
+        ),
     ),
 )
+
 
 DEPRECATED_BINARY_SENSORS: Final = (
     AmazonBinarySensorEntityDescription(
@@ -133,4 +138,14 @@ class AmazonBinarySensorEntity(AmazonEntity, BinarySensorEntity):
         """Return True if the binary sensor is on."""
         return self.entity_description.is_on_fn(
             self.device, self.entity_description.key
+        )
+
+    @property
+    def available(self) -> bool:
+        """Return if entity is available."""
+        return (
+            self.entity_description.is_available_fn(
+                self.device, self.entity_description.key
+            )
+            and super().available
         )

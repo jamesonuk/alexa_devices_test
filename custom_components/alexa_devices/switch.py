@@ -28,6 +28,9 @@ class AmazonSwitchEntityDescription(SwitchEntityDescription):
     """Alexa Devices switch entity description."""
 
     is_on_fn: Callable[[AmazonDevice], bool]
+    is_available_fn: Callable[[AmazonDevice, str], bool] = lambda device, key: (
+        device.online and device.sensors[key].error is False
+    )
     method: str
 
 
@@ -91,3 +94,13 @@ class AmazonSwitchEntity(AmazonEntity, SwitchEntity):
     def is_on(self) -> bool:
         """Return True if switch is on."""
         return self.entity_description.is_on_fn(self.device)
+
+    @property
+    def available(self) -> bool:
+        """Return if entity is available."""
+        return (
+            self.entity_description.is_available_fn(
+                self.device, self.entity_description.key
+            )
+            and super().available
+        )
