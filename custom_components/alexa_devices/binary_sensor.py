@@ -46,7 +46,7 @@ BINARY_SENSORS: Final = (
         is_on_fn=lambda device, _: device.online,
     ),
     AmazonBinarySensorEntityDescription(
-        key="motion",
+        key="detectionState",
         device_class=BinarySensorDeviceClass.MOTION,
         is_on_fn=lambda device, key: bool(
             device.sensors[key].value != SENSOR_STATE_OFF
@@ -105,9 +105,13 @@ async def async_setup_entry(
 
     entity_registry = er.async_get(hass)
 
-    # Replace unique id for "motion" binary sensor
+    # Replace unique id for "detectionState" binary sensor
     await async_update_unique_id(
-        hass, coordinator, BINARY_SENSOR_DOMAIN, "humanPresenceDetectionState", "motion"
+        hass,
+        coordinator,
+        BINARY_SENSOR_DOMAIN,
+        "humanPresenceDetectionState",
+        "detectionState",
     )
 
     async_add_entities(

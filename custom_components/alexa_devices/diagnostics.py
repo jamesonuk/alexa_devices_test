@@ -60,4 +60,5 @@ def build_device_data(device: AmazonDevice) -> dict[str, Any]:
         "online": device.online,
         "serial number": device.serial_number,
         "software version": device.software_version,
+        "sensors": device.sensors,
     }
