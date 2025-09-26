@@ -4,7 +4,6 @@ from collections.abc import Awaitable, Callable, Coroutine
 from functools import wraps
 from typing import Any, Concatenate
 
-from aioamazondevices.const import SPEAKER_GROUP_FAMILY
 from aioamazondevices.exceptions import CannotConnect, CannotRetrieveData
 
 from homeassistant.core import HomeAssistant
@@ -50,7 +49,6 @@ async def async_update_unique_id(
     domain: str,
     old_key: str,
     new_key: str,
-    remove_from_group: bool = False,
 ) -> None:
     """Update unique id for entities created with old format."""
     entity_registry = er.async_get(hass)
@@ -60,14 +58,6 @@ async def async_update_unique_id(
         if entity_id := entity_registry.async_get_entity_id(domain, DOMAIN, unique_id):
             _LOGGER.debug("Updating unique_id for %s", entity_id)
             new_unique_id = unique_id.replace(old_key, new_key)
-
-            # Remove from the group
-            if (
-                remove_from_group
-                and coordinator.data[serial_num].device_family == SPEAKER_GROUP_FAMILY
-            ):
-                entity_registry.async_remove(entity_id)
-                continue
 
             # Update the registry with the new unique_id
             entity_registry.async_update_entity(entity_id, new_unique_id=new_unique_id)
