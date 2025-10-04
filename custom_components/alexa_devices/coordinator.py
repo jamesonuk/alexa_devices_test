@@ -19,7 +19,7 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, Upda
 
 from .const import _LOGGER, CONF_LOGIN_DATA, DOMAIN
 
-SCAN_INTERVAL = 30
+SCAN_INTERVAL = 300
 
 type AmazonConfigEntry = ConfigEntry[AmazonDevicesCoordinator]
 
