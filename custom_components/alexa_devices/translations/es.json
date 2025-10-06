@@ -100,9 +100,6 @@
         },
         "invalid_device_id": {
             "message": "ID de dispositivo no v\u00e1lido especificado: {device_id}"
-        },
-        "invalid_sound_value": {
-            "message": "Sonido no v\u00e1lido {sound} con variante {variant} especificada"
         }
     },
     "selector": {

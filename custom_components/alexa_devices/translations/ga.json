@@ -82,9 +82,6 @@
         },
         "invalid_device_id": {
             "message": "Sonra\u00edodh ID gl\u00e9is neamhbhail\u00ed: {device_id}"
-        },
-        "invalid_sound_value": {
-            "message": "Fuaim neamhbhail\u00ed {sound} le malairt {variant} sonraithe"
         }
     },
     "selector": {

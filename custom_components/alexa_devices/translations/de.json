@@ -100,9 +100,6 @@
         },
         "invalid_device_id": {
             "message": "Ung\u00fcltige Ger\u00e4te-ID angegeben: {device_id}"
-        },
-        "invalid_sound_value": {
-            "message": "Ung\u00fcltiges Ger\u00e4usch {sound} mit der Variante {variant} angegeben"
         }
     },
     "selector": {

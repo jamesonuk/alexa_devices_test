@@ -100,9 +100,6 @@
         },
         "invalid_device_id": {
             "message": "Zadan\u00e9 nespr\u00e1vne ID zariadenia: {device_id}"
-        },
-        "invalid_sound_value": {
-            "message": "Neplatn\u00fd zvuk {sound} so zadan\u00fdm variantom {variant}"
         }
     },
     "selector": {

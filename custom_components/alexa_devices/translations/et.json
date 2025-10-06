@@ -100,9 +100,6 @@
         },
         "invalid_device_id": {
             "message": "M\u00e4\u00e4ratud on kehtetu seadme ID: {device_id}"
-        },
-        "invalid_sound_value": {
-            "message": "Sobimatu heli {sound} variandi {variant} korral"
         }
     },
     "selector": {

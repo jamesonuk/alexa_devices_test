@@ -100,9 +100,6 @@
         },
         "invalid_device_id": {
             "message": "Zad\u00e1no neplatn\u00e9 ID za\u0159\u00edzen\u00ed: {device_id}"
-        },
-        "invalid_sound_value": {
-            "message": "Neplatn\u00fd zvuk {sound} s uvedenou variantou {variant}"
         }
     },
     "selector": {
