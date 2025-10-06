@@ -590,10 +590,6 @@
                 "sound": {
                     "description": "\u8981\u64ad\u653e\u7684\u97f3\u6548\u6a94\u3002",
                     "name": "Alexa Skill \u97f3\u6548\u6a94"
-                },
-                "sound_variant": {
-                    "description": "\u6240\u8981\u64ad\u653e\u7684\u97f3\u6548\u8b8a\u9ad4\u3002",
-                    "name": "\u97f3\u6548\u8b8a\u9ad4"
                 }
             },
             "name": "\u50b3\u9001\u97f3\u6548"

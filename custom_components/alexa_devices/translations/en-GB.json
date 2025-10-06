@@ -590,10 +590,6 @@
                 "sound": {
                     "description": "The sound file to play.",
                     "name": "Alexa Skill sound file"
-                },
-                "sound_variant": {
-                    "description": "The variant of the sound to play.",
-                    "name": "Sound variant"
                 }
             },
             "name": "Send sound"

@@ -590,10 +590,6 @@
                 "sound": {
                     "description": "Die Ger\u00e4uschdatei, die abgespielt werden soll.",
                     "name": "Alexa Skill-Sounddatei"
-                },
-                "sound_variant": {
-                    "description": "Die Variante des abzuspielenden Ger\u00e4uschs.",
-                    "name": "Ger\u00e4usch-Variante"
                 }
             },
             "name": "Ger\u00e4usch senden"

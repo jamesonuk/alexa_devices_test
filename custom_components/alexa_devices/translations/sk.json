@@ -590,10 +590,6 @@
                 "sound": {
                     "description": "Zvukov\u00fd s\u00fabor na prehr\u00e1vanie.",
                     "name": "Zvukov\u00fd s\u00fabor Alexa Skill"
-                },
-                "sound_variant": {
-                    "description": "Variant zvuku, ktor\u00fd sa m\u00e1 prehra\u0165.",
-                    "name": "Zvukov\u00fd variant"
                 }
             },
             "name": "Odosla\u0165 zvuk"

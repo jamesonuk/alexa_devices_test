@@ -420,10 +420,6 @@
                 "sound": {
                     "description": "El archivo de sonido a reproducir.",
                     "name": "Archivo de sonido de Alexa Skill"
-                },
-                "sound_variant": {
-                    "description": "La variante del sonido a reproducir.",
-                    "name": "Variante de sonido"
                 }
             },
             "name": "Enviar sonido"

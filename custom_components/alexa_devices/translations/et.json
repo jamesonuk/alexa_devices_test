@@ -590,10 +590,6 @@
                 "sound": {
                     "description": "Esitatav helifail.",
                     "name": "Alexa Skill helifail"
-                },
-                "sound_variant": {
-                    "description": "Esitatava heli variant.",
-                    "name": "Heli variant"
                 }
             },
             "name": "Saada heli"

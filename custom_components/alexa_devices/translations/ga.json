@@ -572,10 +572,6 @@
                 "sound": {
                     "description": "An comhad fuaime le seinm.",
                     "name": "Comhad fuaime Alexa Skill"
-                },
-                "sound_variant": {
-                    "description": "An leagan den fhuaim at\u00e1 le seinm.",
-                    "name": "Leagan fuaime"
                 }
             },
             "name": "Seol fuaim"

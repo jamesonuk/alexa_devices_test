@@ -590,10 +590,6 @@
                 "sound": {
                     "description": "O ficheiro de som a reproduzir.",
                     "name": "Ficheiro de som Alexa Skill"
-                },
-                "sound_variant": {
-                    "description": "A variante do som a reproduzir.",
-                    "name": "Variante de som"
                 }
             },
             "name": "Enviar som"
