@@ -1,13 +1,19 @@
 {
   "domain": "alexa_devices",
   "name": "Alexa Devices",
-  "codeowners": ["@chemelli74"],
+  "codeowners": [
+    "@chemelli74"
+  ],
   "config_flow": true,
   "documentation": "https://www.home-assistant.io/integrations/alexa_devices",
   "integration_type": "hub",
   "iot_class": "cloud_polling",
-  "loggers": ["aioamazondevices"],
+  "loggers": [
+    "aioamazondevices"
+  ],
   "quality_scale": "platinum",
-  "requirements": ["aioamazondevices==6.4.0"],
-  "version": "516.16"
+  "requirements": [
+    "aioamazondevices==6.4.1"
+  ],
+  "version": "154228"
 }
