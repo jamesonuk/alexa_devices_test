@@ -13,7 +13,7 @@
   ],
   "quality_scale": "platinum",
   "requirements": [
-    "git+https://github.com/chemelli74/aioamazondevices.git@refs/pull/533/head#aioamazondevices==6.4.2-rc.1"
+    "git+https://github.com/chemelli74/aioamazondevices.git@refs/pull/533/head#aioamazondevices==6.4.2-rc.2"
   ],
   "version": "154228"
 }
