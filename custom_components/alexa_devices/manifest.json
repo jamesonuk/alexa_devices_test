@@ -8,5 +8,6 @@
   "iot_class": "cloud_polling",
   "loggers": ["aioamazondevices"],
   "quality_scale": "platinum",
-  "requirements": ["aioamazondevices==6.5.2"]
+  "requirements": ["aioamazondevices==6.5.2"],
+  "version": "2025.11.0-pre-release.2"
 }
