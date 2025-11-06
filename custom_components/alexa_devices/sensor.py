@@ -7,8 +7,8 @@ from dataclasses import dataclass
 from datetime import datetime
 from typing import Final
 
-from aioamazondevices.api import AmazonDevice
-from aioamazondevices.const import (
+from aioamazondevices.structures import AmazonDevice
+from aioamazondevices.const.schedules import (
     NOTIFICATION_ALARM,
     NOTIFICATION_REMINDER,
     NOTIFICATION_TIMER,

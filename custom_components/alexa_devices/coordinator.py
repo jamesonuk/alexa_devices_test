@@ -2,7 +2,8 @@
 
 from datetime import timedelta
 
-from aioamazondevices.api import AmazonDevice, AmazonEchoApi
+from aioamazondevices.api import AmazonEchoApi
+from aioamazondevices.structures import AmazonDevice
 from aioamazondevices.exceptions import (
     CannotAuthenticate,
     CannotConnect,
