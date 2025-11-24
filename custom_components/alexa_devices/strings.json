@@ -101,6 +101,9 @@
     },
     "invalid_sound_value": {
       "message": "Invalid sound {sound} specified"
+    },
+    "invalid_info_skill_value": {
+      "message": "Invalid info skill {info_skill} specified"
     }
   },
   "selector": {
@@ -148,6 +151,27 @@
         "squeaky_12": "Squeaky door",
         "zap_01": "Zap"
       }
+    },
+    "info_skill": {
+      "options": {
+        "Alexa.Calendar.PlayToday": "Calendar: Today's Calendar",
+        "Alexa.Calendar.PlayTomorrow": "Calendar: Tomorrow's Calendar",
+        "Alexa.Calendar.PlayNext": "Calendar: Next event",
+        "Alexa.Date.Play": "Date",
+        "Alexa.Time.Play": "Time",
+        "Alexa.News.NationalNews": "National News",
+        "Alexa.FlashBriefing.Play": "Flash Briefing",
+        "Alexa.Traffic.Play": "Traffic",
+        "Alexa.Weather.Play": "Weather",
+        "Alexa.CleanUp.Play": "Encourage me to clean up",
+        "Alexa.GoodMorning.Play": "Good morning",
+        "Alexa.SingASong.Play": "Sing a song",
+        "Alexa.FunFact.Play": "Tell me a fun fact",
+        "Alexa.Joke.Play": "Tell me a joke",
+        "Alexa.TellStory.Play": "Tell me a story",
+        "Alexa.ImHome.Play": "Welcome me home",
+        "Alexa.GoodNight.Play": "Wish me a good night"
+      }
     }
   },
   "services": {
@@ -178,6 +202,20 @@
         }
       },
       "name": "Send text command"
+    },
+    "send_info_skill": {
+      "description": "Sends an info skill command to a device",
+      "fields": {
+        "device_id": {
+          "description": "[%key:component::alexa_devices::common::device_id_description%]",
+          "name": "Device"
+        },
+        "info_skill": {
+          "description": "The info skill command to send.",
+          "name": "Alexa info skill command"
+        }
+      },
+      "name": "Send info skill command"
     }
   }
 }

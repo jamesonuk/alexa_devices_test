@@ -5,6 +5,9 @@
     },
     "send_text_command": {
       "service": "mdi:microphone-message"
+    },
+    "send_info_skill": {
+      "service": "mdi:information"
     }
   }
 }
