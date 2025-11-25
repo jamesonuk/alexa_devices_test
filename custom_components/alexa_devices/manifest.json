@@ -9,5 +9,5 @@
   "loggers": ["aioamazondevices"],
   "quality_scale": "platinum",
   "requirements": ["aioamazondevices==9.0.3"],
-  "version": "2025.12-alpha.1"
+  "version": "2025.12.0-alpha.2"
 }
