@@ -179,5 +179,11 @@
       },
       "name": "Send text command"
     }
+  },
+  "issues": {
+    "revert_to_core": {
+      "title": "Revert to core version",
+      "description": "This is a test version.  You should remove this custom version and revert to the core Home Assistant Alexa Devices integration."
+    }
   }
 }
