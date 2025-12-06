@@ -32,6 +32,7 @@ class RevertToCoreFlow(RepairsFlow):
             await self.hass.async_add_executor_job(
                 shutil.rmtree, "/config/custom_components/alexa_devices"
             )
+            raise_restart_required_issue(self.hass)
             return self.async_create_entry(title="", data={})
 
         return self.async_show_form(step_id="confirm", data_schema=vol.Schema({}))
