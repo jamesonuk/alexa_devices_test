@@ -1,6 +1,6 @@
 """Alexa Devices integration."""
 
-from custom_components.alexa_devices.repair import raise_revert_to_core_issue
+from custom_components.alexa_devices.repairs import raise_revert_to_core_issue
 from homeassistant.const import CONF_COUNTRY, Platform
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers import aiohttp_client, config_validation as cv
