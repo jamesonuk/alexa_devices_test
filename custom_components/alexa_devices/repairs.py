@@ -30,7 +30,8 @@ class RevertToCoreFlow(RepairsFlow):
         """Handle the confirm step of a fix flow."""
         if user_input is not None:
             await self.hass.async_add_executor_job(
-                shutil.rmtree, "/config/custom_components/alexa_devices"
+                shutil.rmtree,
+                f"{self.hass.config.config_dir}/custom_components/alexa_devices",
             )
             raise_restart_required_issue(self.hass)
             return self.async_create_entry(title="", data={})
