@@ -179,5 +179,31 @@
             },
             "name": "Send text command"
         }
+    },
+    "issues": {
+        "revert_to_core": {
+            "title": "Revert to core version",
+            "description": "This is a test version.  You should remove this custom version and revert to the core Home Assistant Alexa Devices integration.",
+            "fix_flow": {
+                "step": {
+                    "confirm": {
+                        "description": "This is a test version.  You should remove this custom version and revert to the core Home Assistant Alexa Devices integration.\n\nDo you want to revert to the core Home Assistant Alexa Devices integration now?",
+                        "title": "Revert to core version"
+                    }
+                }
+            }
+        },
+        "restart_required": {
+            "title": "Restart required",
+            "description": "A restart of Home Assistant is required to revert Alexa Devices integration to core version.  Please restart Home Assistant as soon as possible.",
+            "fix_flow": {
+                "step": {
+                    "confirm_restart": {
+                        "description": "Please restart Home Assistant to complete the reversion to the core Alexa Devices integration.",
+                        "title": "Restart Home Assistant"
+                    }
+                }
+            }
+        }
     }
 }
