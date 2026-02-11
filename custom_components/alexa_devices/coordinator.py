@@ -45,7 +45,7 @@ class AmazonDevicesCoordinator(DataUpdateCoordinator[dict[str, AmazonDevice]]):
             config_entry=entry,
             update_interval=timedelta(seconds=SCAN_INTERVAL),
             request_refresh_debouncer=Debouncer(
-                hass, _LOGGER, cooldown=30, immediate=False
+                hass, _LOGGER, cooldown=SCAN_INTERVAL, immediate=False
             ),
         )
         self.api = AmazonEchoApi(

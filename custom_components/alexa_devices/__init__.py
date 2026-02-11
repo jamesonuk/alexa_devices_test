@@ -29,6 +29,7 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
 
 async def async_setup_entry(hass: HomeAssistant, entry: AmazonConfigEntry) -> bool:
     """Set up Alexa Devices platform."""
+
     session = aiohttp_client.async_create_clientsession(hass)
     coordinator = AmazonDevicesCoordinator(hass, entry, session)
 

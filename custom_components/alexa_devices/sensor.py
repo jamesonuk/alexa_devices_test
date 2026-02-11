@@ -109,17 +109,15 @@ SENSORS: Final = (
     ),
     AmazonSensorEntityDescription(
         key="VOC",
-        device_class=SensorDeviceClass.AQI,
+        # No device class as this is an index not a concentration
         state_class=SensorStateClass.MEASUREMENT,
-        icon="mdi:molecule",
-        name="Volatile Organic Compounds",
-        translation_key="volatile_organic_compounds",
+        translation_key="voc_index",
     ),
     AmazonSensorEntityDescription(
         key="Air Quality",
         device_class=SensorDeviceClass.AQI,
         state_class=SensorStateClass.MEASUREMENT,
-    ),    
+    ),
 )
 NOTIFICATIONS: Final = (
     AmazonNotificationEntityDescription(
