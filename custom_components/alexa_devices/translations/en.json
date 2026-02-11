@@ -76,7 +76,7 @@
             "timer": {
                 "name": "Next timer"
             },
-            "volatile_organic_compounds_index": {
+            "voc_index": {
                 "name": "Volatile Organic Compounds Index"
             }
         },
