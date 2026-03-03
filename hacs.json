@@ -1,5 +1,4 @@
 {
   "name": "alexa_devices",
-  "homeassistant": "2026.2.0",
-  "version": "2026.3.0-beta.5"
+  "homeassistant": "2026.2.0"
 }
