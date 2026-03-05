@@ -1,5 +1,6 @@
 """Alexa Devices integration."""
 
+from custom_components.alexa_devices.repairs import raise_revert_to_core_issue
 from homeassistant.const import CONF_COUNTRY, Platform
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers import aiohttp_client, config_validation as cv
@@ -21,6 +22,7 @@ CONFIG_SCHEMA = cv.config_entry_only_config_schema(DOMAIN)
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
     """Set up the Alexa Devices component."""
+    raise_revert_to_core_issue(hass)
     async_setup_services(hass)
     return True
 
@@ -32,7 +34,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: AmazonConfigEntry) -> bo
     coordinator = AmazonDevicesCoordinator(hass, entry, session)
 
     await coordinator.async_config_entry_first_refresh()
-    await coordinator.api.start_http2_thread()
 
     entry.runtime_data = coordinator
 
