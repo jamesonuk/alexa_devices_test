@@ -8,7 +8,11 @@ from aioamazondevices.exceptions import (
     CannotConnect,
     CannotRetrieveData,
 )
-from aioamazondevices.structures import AmazonDevice
+from aioamazondevices.structures import (
+    AmazonDevice,
+    AmazonMediaState,
+    AmazonVolumeState,
+)
 from aiohttp import ClientSession
 
 from homeassistant.config_entries import ConfigEntry
@@ -54,7 +58,24 @@ class AmazonDevicesCoordinator(DataUpdateCoordinator[dict[str, AmazonDevice]]):
             entry.data[CONF_PASSWORD],
             entry.data[CONF_LOGIN_DATA],
         )
-        self.previous_devices: set[str] = set()
+        device_registry = dr.async_get(hass)
+        self.previous_devices: set[str] = {
+            identifier
+            for device in device_registry.devices.get_devices_for_config_entry_id(
+                entry.entry_id
+            )
+            if device.entry_type != dr.DeviceEntryType.SERVICE
+            for identifier_domain, identifier in device.identifiers
+            if identifier_domain == DOMAIN
+        }
+
+        self._volume_states: dict[str, AmazonVolumeState] = {}
+        self._media_states: dict[str, AmazonMediaState] = {}
+
+        self.api.on_volume_state_event.append(self.volume_state_event_handler)
+        self.api.on_volume_state_event.freeze()
+        self.api.on_media_state_event.append(self.media_state_event_handler)
+        self.api.on_media_state_event.freeze()
 
     async def _async_update_data(self) -> dict[str, AmazonDevice]:
         """Update device data."""
@@ -107,3 +128,31 @@ class AmazonDevicesCoordinator(DataUpdateCoordinator[dict[str, AmazonDevice]]):
                     device_id=device.id,
                     remove_config_entry_id=self.config_entry.entry_id,
                 )
+
+    async def sync_media_state(self) -> None:
+        """Sync media state."""
+        await self.api.sync_media_state()
+
+    async def media_state_event_handler(
+        self, media_state: dict[str, AmazonMediaState]
+    ) -> None:
+        """Handle pushed media state changed events."""
+        self._media_states = media_state
+        self.async_update_listeners()
+
+    @property
+    def media_states(self) -> dict[str, AmazonMediaState]:
+        """Media state of devices."""
+        return self._media_states
+
+    async def volume_state_event_handler(
+        self, volume_states: dict[str, AmazonVolumeState]
+    ) -> None:
+        """Handle pushed volume change events."""
+        self._volume_states = volume_states
+        self.async_update_listeners()
+
+    @property
+    def volume_states(self) -> dict[str, AmazonVolumeState]:
+        "Volumes of devices."
+        return self._volume_states

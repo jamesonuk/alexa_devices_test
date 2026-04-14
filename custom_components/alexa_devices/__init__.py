@@ -12,6 +12,7 @@ from .services import async_setup_services
 
 PLATFORMS = [
     Platform.BINARY_SENSOR,
+    Platform.MEDIA_PLAYER,
     Platform.NOTIFY,
     Platform.SENSOR,
     Platform.SWITCH,
@@ -34,6 +35,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: AmazonConfigEntry) -> bo
     coordinator = AmazonDevicesCoordinator(hass, entry, session)
 
     await coordinator.async_config_entry_first_refresh()
+
+    await coordinator.sync_media_state()
+    await coordinator.api.start_http2_thread()
 
     entry.runtime_data = coordinator
 
@@ -86,4 +90,8 @@ async def async_migrate_entry(hass: HomeAssistant, entry: AmazonConfigEntry) -> 
 
 async def async_unload_entry(hass: HomeAssistant, entry: AmazonConfigEntry) -> bool:
     """Unload a config entry."""
+    try:
+        await entry.runtime_data.api.stop_http2_thread()
+    except Exception:  # noqa: BLE001
+        _LOGGER.error("Error while stopping http2 thread", exc_info=True)
     return await hass.config_entries.async_unload_platforms(entry, PLATFORMS)
