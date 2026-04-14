@@ -25,6 +25,11 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, Upda
 
 from .const import _LOGGER, CONF_LOGIN_DATA, DOMAIN
 
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from .text import AmazonLastUsedDevice
+
 SCAN_INTERVAL = 300
 
 type AmazonConfigEntry = ConfigEntry[AmazonDevicesCoordinator]
@@ -71,11 +76,14 @@ class AmazonDevicesCoordinator(DataUpdateCoordinator[dict[str, AmazonDevice]]):
 
         self._volume_states: dict[str, AmazonVolumeState] = {}
         self._media_states: dict[str, AmazonMediaState] = {}
+        self.last_used_entity: AmazonLastUsedDevice | None = None
 
         self.api.on_volume_state_event.append(self.volume_state_event_handler)
         self.api.on_volume_state_event.freeze()
         self.api.on_media_state_event.append(self.media_state_event_handler)
         self.api.on_media_state_event.freeze()
+        self.api.on_eq_state_event.append(self.eq_state_event_handler)
+        self.api.on_eq_state_event.freeze()
 
     async def _async_update_data(self) -> dict[str, AmazonDevice]:
         """Update device data."""
@@ -156,3 +164,7 @@ class AmazonDevicesCoordinator(DataUpdateCoordinator[dict[str, AmazonDevice]]):
     def volume_states(self) -> dict[str, AmazonVolumeState]:
         "Volumes of devices."
         return self._volume_states
+
+    async def eq_state_event_handler(self, serial_num: str) -> None:
+        """Handle pushed EQ change events."""
+        self.last_used_entity.update_last_used(serial_num)
