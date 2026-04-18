@@ -45,7 +45,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: AmazonConfigEntry) -> bo
         alpn_protocols=httpx_client.SSL_ALPN_HTTP11_HTTP2,
         timeout=httpx.Timeout(None),
     )
-    await coordinator.api.start_http2_thread(alexa_httpx_client)
+    await coordinator.api.start_http2_processing(alexa_httpx_client)
     _LOGGER.warning("After starting http2 thread")
 
     entry.runtime_data = coordinator
