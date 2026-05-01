@@ -1,11 +1,16 @@
 """Alexa Devices integration."""
 
+import asyncio
+
+import httpx
+
 from custom_components.alexa_devices.repairs import raise_revert_to_core_issue
+
 from homeassistant.const import CONF_COUNTRY, Platform
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers import aiohttp_client, config_validation as cv, httpx_client
 from homeassistant.helpers.typing import ConfigType
-import httpx
+from homeassistant.util.ssl import SSL_ALPN_HTTP11_HTTP2
 
 from .const import _LOGGER, CONF_LOGIN_DATA, CONF_SITE, COUNTRY_DOMAINS, DOMAIN
 from .coordinator import AmazonConfigEntry, AmazonDevicesCoordinator
@@ -13,6 +18,7 @@ from .services import async_setup_services
 
 PLATFORMS = [
     Platform.BINARY_SENSOR,
+    Platform.BUTTON,
     Platform.MEDIA_PLAYER,
     Platform.NOTIFY,
     Platform.SENSOR,
@@ -36,17 +42,27 @@ async def async_setup_entry(hass: HomeAssistant, entry: AmazonConfigEntry) -> bo
     coordinator = AmazonDevicesCoordinator(hass, entry, session)
 
     await coordinator.async_config_entry_first_refresh()
-    _LOGGER.warning("After first refresh")
+
     await coordinator.sync_media_state()
-    _LOGGER.warning("After media sync")
 
     alexa_httpx_client = httpx_client.create_async_httpx_client(
         hass,
-        alpn_protocols=httpx_client.SSL_ALPN_HTTP11_HTTP2,
+        alpn_protocols=SSL_ALPN_HTTP11_HTTP2,
         timeout=httpx.Timeout(None),
     )
-    await coordinator.api.start_http2_processing(alexa_httpx_client)
-    _LOGGER.warning("After starting http2 thread")
+    http2_task = await coordinator.api.start_http2_processing(alexa_httpx_client)
+
+    def _on_http2_task_done(task: asyncio.Task) -> None:
+        if not task.cancelled() and task.exception():
+            _LOGGER.exception("HTTP2 task failed", exc_info=task.exception())
+
+    http2_task.add_done_callback(_on_http2_task_done)
+
+    async def _cancel_http2_task() -> None:
+        # needed to avoid typing issues with async_on_unload
+        http2_task.cancel()
+
+    entry.async_on_unload(_cancel_http2_task)
 
     entry.runtime_data = coordinator
 
@@ -102,5 +118,5 @@ async def async_unload_entry(hass: HomeAssistant, entry: AmazonConfigEntry) -> b
     try:
         await entry.runtime_data.api.stop_http2_processing()
     except Exception:  # noqa: BLE001
-        _LOGGER.error("Error while stopping http2 processing", exc_info=True)
+        _LOGGER.error("Error while stopping http2 task", exc_info=True)
     return await hass.config_entries.async_unload_platforms(entry, PLATFORMS)
