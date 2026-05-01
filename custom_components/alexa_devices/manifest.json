@@ -9,7 +9,7 @@
   "loggers": ["aioamazondevices"],
   "quality_scale": "platinum",
   "requirements": [
-    "aioamazondevices@git+https://github.com/chemelli74/aioamazondevices.git@jamesonuk/testing-4#aioamazondevices==13.4.5"
+    "aioamazondevices@git+https://github.com/chemelli74/aioamazondevices.git@2026.6.0-alpha.1#aioamazondevices==13.4.5"
   ],
-    "version": "2026.5.0-alpha.5"
+    "version": "2026.6.0-alpha.1"
 }
