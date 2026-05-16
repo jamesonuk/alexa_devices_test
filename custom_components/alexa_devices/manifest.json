@@ -8,8 +8,13 @@
   "iot_class": "cloud_polling",
   "loggers": ["aioamazondevices"],
   "quality_scale": "platinum",
+<<<<<<< HEAD
   "requirements": [
     "aioamazondevices@git+https://github.com/chemelli74/aioamazondevices.git@gzip_test#aioamazondevices==13.4.6"
   ],
     "version": "2026.6.0-alpha.3"
+=======
+  "requirements": ["git+https://github.com/chemelli74/aioamazondevices.git@refs/pull/836/head#aioamazondevices==13.7.1"],
+  "verison": "2026.6.0-alpha.3"
+>>>>>>> e786ef1 (Test routines with device)
 }
