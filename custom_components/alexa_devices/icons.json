@@ -1,8 +1,18 @@
 {
   "entity": {
+    "event": {
+      "voice_event": {
+        "default": "mdi:chat-processing"
+      }
+    },
     "sensor": {
       "voc_index": {
         "default": "mdi:molecule"
+      }
+    },
+    "todo": {
+      "shop": {
+        "default": "mdi:cart"
       }
     }
   },

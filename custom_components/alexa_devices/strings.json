@@ -58,17 +58,24 @@
     }
   },
   "entity": {
+    "event": {
+      "voice_event": {
+        "name": "Voice event",
+        "state_attributes": {
+          "event_type": {
+            "state": {
+              "triggered": "Triggered"
+            }
+          }
+        }
+      }
+    },
     "notify": {
       "announce": {
         "name": "Announce"
       },
       "speak": {
         "name": "Speak"
-      }
-    },
-    "select": {
-      "default_device": {
-        "name": "Default device"
       }
     },
     "sensor": {
@@ -89,6 +96,14 @@
       "do_not_disturb": {
         "name": "Do not disturb"
       }
+    },
+    "todo": {
+      "shop": {
+        "name": "Shopping list"
+      },
+      "todo": {
+        "name": "To-do list"
+      }
     }
   },
   "exceptions": {
@@ -107,6 +122,9 @@
     "entry_not_loaded": {
       "message": "Entry not loaded: {entry}"
     },
+    "invalid_auth": {
+      "message": "Invalid authentication credentials: {error}"
+    },
     "invalid_device_id": {
       "message": "Invalid device ID specified: {device_id}"
     },
@@ -116,8 +134,17 @@
     "invalid_sound_value": {
       "message": "Invalid sound {sound} specified"
     },
-    "select_option_not_found": {
-      "message": "Device with name {name} not found"
+    "todo_item_not_found": {
+      "message": "Unable to update or delete to-do item {uid} from list {entity_id}: the item was not found. It may have already been deleted."
+    },
+    "todo_item_summary_empty": {
+      "message": "Item summary cannot be empty."
+    },
+    "todo_item_summary_uid_required": {
+      "message": "Item summary and UID are required."
+    },
+    "todo_items_lookup_not_found": {
+      "message": "Unable to update or delete to-do item(s) from list {entity_id}: the cached list items could not be found. Restart and try again."
     }
   },
   "selector": {
