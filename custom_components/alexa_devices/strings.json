@@ -134,6 +134,9 @@
     "invalid_sound_value": {
       "message": "Invalid sound {sound} specified"
     },
+    "unknown_exception": {
+      "message": "Unknown error occurred: {error}"
+    },
     "todo_item_not_found": {
       "message": "Unable to update or delete to-do item {uid} from list {entity_id}: the item was not found. It may have already been deleted."
     },
