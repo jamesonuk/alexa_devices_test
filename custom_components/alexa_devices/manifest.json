@@ -8,6 +8,6 @@
   "iot_class": "cloud_polling",
   "loggers": ["aioamazondevices"],
   "quality_scale": "platinum",
-  "requirements": ["git+https://github.com/chemelli74/aioamazondevices.git@2026.7.0.beta-1#aioamazondevices==14.0.3"],
-  "version": "2026.7.0.beta-2"
+  "requirements": ["git+https://github.com/chemelli74/aioamazondevices.git@7939ae843aec5f6b59dd607a5a04c03a57ff73ce#aioamazondevices==14.0.3"],
+  "version": "2026.7.0-beta.2"
 }
