@@ -8,6 +8,6 @@
   "iot_class": "cloud_polling",
   "loggers": ["aioamazondevices"],
   "quality_scale": "platinum",
-  "requirements": ["aioamazondevices==14.1.6"],
-  "version": "2026.7.0-beta.6"
+  "requirements": ["aioamazondevices==14.1.8"],
+  "version": "2026.7.0-beta.7"
 }
