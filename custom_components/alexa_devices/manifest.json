@@ -9,7 +9,7 @@
   "loggers": ["aioamazondevices"],
   "quality_scale": "platinum",
   "requirements": [
-    "git+https://github.com/chemelli74/aioamazondevices.git@refs/pull/993/head#aioamazondevices==14.2.2"
+    "git+https://github.com/chemelli74/aioamazondevices.git@chemelli74-no-communications#aioamazondevices==14.2.3"
   ],
-  "version": "2026.8.0-beta.2"
+  "version": "2026.8.0-beta.3"
 }
