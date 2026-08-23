@@ -9,7 +9,7 @@
   "loggers": ["aioamazondevices"],
   "quality_scale": "platinum",
   "requirements": [
-    "git+https://github.com/chemelli74/aioamazondevices.git@chemelli74-fix-sonos-online#aioamazondevices==14.2.3"
+    "git+https://github.com/chemelli74/aioamazondevices.git@chemelli74-thermostat-support#aioamazondevices==14.2.3"
   ],
-  "version": "2026.9.0-beta.1"
+  "version": "2026.9.0-beta.2"
 }
