@@ -9,7 +9,7 @@
   "loggers": ["aioamazondevices"],
   "quality_scale": "platinum",
   "requirements": [
-    "git+https://github.com/chemelli74/aioamazondevices.git@chemelli74-thermostat-support#aioamazondevices==14.2.3"
+    "git+https://github.com/chemelli74/aioamazondevices.git@jamesonuk/full_graphql_dump#aioamazondevices==15.1.3"
   ],
-  "version": "2026.9.0-beta.2"
+  "version": "2026.9.0-graphql.0"
 }
