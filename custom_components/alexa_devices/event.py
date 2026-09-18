@@ -1,8 +1,11 @@
 """Support for events."""
 
+from collections.abc import Callable
+from dataclasses import dataclass
 from typing import Final, override
 
-from aioamazondevices.const.devices import SPEAKER_GROUP_FAMILY
+from aioamazondevices.const.devices import DEVICE_TYPE_AQM, SPEAKER_GROUP_FAMILY
+from aioamazondevices.structures import AmazonDevice
 
 from homeassistant.components.event import (
     DOMAIN as EVENT_DOMAIN,
@@ -15,15 +18,27 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from .const import LOGGER
 from .coordinator import AmazonConfigEntry, AmazonDevicesCoordinator
 from .entity import AmazonEntity
-from .utils import async_remove_entity_from_virtual_group
+from .utils import async_remove_entities
 
 # Coordinator is used to centralize the data updates
 PARALLEL_UPDATES = 0
 
+
+@dataclass(frozen=True, kw_only=True)
+class AmazonEventEntityDescription(EventEntityDescription):
+    """Alexa Devices event entity description."""
+
+    is_supported_fn: Callable[[AmazonDevice], bool] = lambda device: True
+
+
 EVENTS: Final = {
-    EventEntityDescription(
+    AmazonEventEntityDescription(
         key="voice_event",
         translation_key="voice_event",
+        is_supported_fn=lambda device: (
+            device.device_family != SPEAKER_GROUP_FAMILY
+            and device.device_type != DEVICE_TYPE_AQM
+        ),
     ),
 }
 
@@ -38,15 +53,23 @@ async def async_setup_entry(
     """Set up Alexa Devices events based on a config entry."""
     coordinator = entry.runtime_data
 
-    # Remove voice event from virtual groups
-    await async_remove_entity_from_virtual_group(
-        hass, coordinator, EVENT_DOMAIN, "voice_event"
+    # Remove voice event from virtual groups and AQM devices
+    await async_remove_entities(
+        hass,
+        coordinator,
+        EVENT_DOMAIN,
+        "voice_event",
+        remove_fn=lambda device: (
+            device.device_family == SPEAKER_GROUP_FAMILY
+            or device.device_type == DEVICE_TYPE_AQM
+        ),
     )
 
     known_devices: set[str] = set()
 
     def _check_device() -> None:
         current_devices = set(coordinator.data)
+        known_devices.intersection_update(current_devices)
         new_devices = current_devices - known_devices
         if new_devices:
             known_devices.update(new_devices)
@@ -54,7 +77,7 @@ async def async_setup_entry(
                 AlexaVoiceEvent(coordinator, serial_num, event_desc)
                 for event_desc in EVENTS
                 for serial_num in new_devices
-                if coordinator.data[serial_num].device_family != SPEAKER_GROUP_FAMILY
+                if event_desc.is_supported_fn(coordinator.data[serial_num])
             )
 
     _check_device()
@@ -96,6 +119,8 @@ class AlexaVoiceEvent(AmazonEntity, EventEntity):
                 "intent": vocal_record.intent,
                 "voice_command": vocal_record.title,
                 "voice_reply": vocal_record.sub_title,
+                "person_first_name": vocal_record.person_first_name,
+                "person_type": vocal_record.person_type,
             },
         )
         self.async_write_ha_state()

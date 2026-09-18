@@ -16,7 +16,6 @@ from .services import async_setup_services
 PLATFORMS = [
     Platform.BINARY_SENSOR,
     Platform.BUTTON,
-    Platform.CLIMATE,
     Platform.EVENT,
     Platform.MEDIA_PLAYER,
     Platform.NOTIFY,
@@ -63,6 +62,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: AmazonConfigEntry) -> bo
         coordinator.sync_todo_list_items,
         coordinator.sync_history_state,
         coordinator.sync_media_state,
+        coordinator.sync_dnd_state,
     ):
         await _async_initial_sync(sync_call)
 
