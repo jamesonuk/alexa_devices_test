@@ -24,17 +24,25 @@ PARALLEL_UPDATES = 1
 
 
 def _update_dnd_state(
-    coordinator: AmazonDevicesCoordinator, serial_num: str, key: str, state: bool
+    coordinator: AmazonDevicesCoordinator,
+    serial_num: str,
+    entity_description_key: str,
+    state: bool,
 ) -> None:
     """Update the local DND state."""
     coordinator.set_dnd_state(serial_num, state)
 
 
 def _update_communication_state(
-    coordinator: AmazonDevicesCoordinator, serial_num: str, key: str, state: bool
+    coordinator: AmazonDevicesCoordinator,
+    serial_num: str,
+    entity_description_key: str,
+    state: bool,
 ) -> None:
     """Update the local communication settings state."""
-    coordinator.data[serial_num].communication_settings[key] = "ON" if state else "OFF"
+    coordinator.data[serial_num].communication_settings[entity_description_key] = (
+        "ON" if state else "OFF"
+    )
 
 
 @dataclass(frozen=True, kw_only=True)
@@ -110,7 +118,7 @@ async def async_setup_entry(
         coordinator,
         SWITCH_DOMAIN,
         old_key,
-        remove_fn=lambda d: d.device_family == SPEAKER_GROUP_FAMILY,
+        remove_fn=lambda device: device.device_family == SPEAKER_GROUP_FAMILY,
     )
 
     # Replace unique id for DND switch
@@ -123,27 +131,32 @@ async def async_setup_entry(
         current_devices = set(coordinator.data)
         known_devices.intersection_update(current_devices)
         new_devices = current_devices - known_devices
-        known_devices.update(new_devices)
 
         # DND state may arrive after device discovery (initial sync failure,
         # or a later push), so track it separately from `known_devices`.
+        known_dnd_devices.intersection_update(current_devices)
         new_dnd_devices = (
             current_devices & coordinator.dnd_states.keys()
         ) - known_dnd_devices
-        known_dnd_devices.update(new_dnd_devices)
 
-        dnd_switches = [
-            AmazonSwitchEntity(coordinator, serial_num, DND_SWITCH)
-            for serial_num in new_dnd_devices
-        ]
-        communication_switches = [
-            AmazonSwitchEntity(coordinator, serial_num, switch_desc)
-            for switch_desc in COMMUNICATION_SWITCHES
-            for serial_num in new_devices
-            if switch_desc.key in coordinator.data[serial_num].communication_settings
-        ]
-        if dnd_switches or communication_switches:
-            async_add_entities(dnd_switches + communication_switches)
+        if new_dnd_devices:
+            dnd_switches = [
+                AmazonSwitchEntity(coordinator, serial_num, DND_SWITCH)
+                for serial_num in new_dnd_devices
+            ]
+            async_add_entities(dnd_switches)
+            known_dnd_devices.update(new_dnd_devices)
+
+        if new_devices:
+            communication_switches = [
+                AmazonSwitchEntity(coordinator, serial_num, switch_desc)
+                for switch_desc in COMMUNICATION_SWITCHES
+                for serial_num in new_devices
+                if switch_desc.key
+                in coordinator.data[serial_num].communication_settings
+            ]
+            async_add_entities(communication_switches)
+            known_devices.update(new_devices)
 
     _check_device()
     entry.async_on_unload(coordinator.async_add_listener(_check_device))
