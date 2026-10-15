@@ -4,11 +4,13 @@ from collections.abc import Callable
 from dataclasses import dataclass
 from typing import Final, override
 
-from aioamazondevices.const.metadata import SENSOR_STATE_OFF
 from aioamazondevices.structures import AmazonDevice
 
+import homeassistant.helpers.entity_registry as er
 from homeassistant.components.binary_sensor import (
     DOMAIN as BINARY_SENSOR_DOMAIN,
+)
+from homeassistant.components.binary_sensor import (
     BinarySensorDeviceClass,
     BinarySensorEntity,
     BinarySensorEntityDescription,
@@ -16,7 +18,6 @@ from homeassistant.components.binary_sensor import (
 from homeassistant.const import EntityCategory, Platform
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
-import homeassistant.helpers.entity_registry as er
 
 from .const import DOMAIN, LOGGER
 from .coordinator import AmazonConfigEntry
@@ -32,7 +33,7 @@ class AmazonBinarySensorEntityDescription(BinarySensorEntityDescription):
     """Alexa Devices binary sensor entity description."""
 
     is_on_fn: Callable[[AmazonDevice, str], bool]
-    is_supported: Callable[[AmazonDevice, str], bool] = lambda device, key: True
+    is_supported_fn: Callable[[AmazonDevice, str], bool] = lambda device, key: True
     is_available_fn: Callable[[AmazonDevice, str], bool] = lambda device, key: True
 
 
@@ -46,10 +47,8 @@ BINARY_SENSORS: Final = (
     AmazonBinarySensorEntityDescription(
         key="detectionState",
         device_class=BinarySensorDeviceClass.MOTION,
-        is_on_fn=lambda device, key: bool(
-            device.sensors[key].value != SENSOR_STATE_OFF
-        ),
-        is_supported=lambda device, key: device.sensors.get(key) is not None,
+        is_on_fn=lambda device, key: bool(device.sensors[key].value != "NOT_FOUND"),
+        is_supported_fn=lambda device, key: device.sensors.get(key) is not None,
         is_available_fn=lambda device, key: (
             device.online
             and (sensor := device.sensors.get(key)) is not None
@@ -135,7 +134,7 @@ async def async_setup_entry(
                 AmazonBinarySensorEntity(coordinator, serial_num, sensor_desc)
                 for sensor_desc in BINARY_SENSORS
                 for serial_num in new_devices
-                if sensor_desc.is_supported(
+                if sensor_desc.is_supported_fn(
                     coordinator.data[serial_num], sensor_desc.key
                 )
             )
