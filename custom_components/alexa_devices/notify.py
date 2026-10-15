@@ -48,7 +48,7 @@ NOTIFY: Final = (
             device.communication_settings.get("communications") != "OFF"
         ),
         method=lambda api, device, message, title: api.call_alexa_announcement(
-            device, message, title
+            device, message, display_text=title
         ),
     ),
 )
