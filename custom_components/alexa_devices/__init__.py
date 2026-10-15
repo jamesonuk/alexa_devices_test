@@ -2,6 +2,7 @@
 
 from collections.abc import Awaitable, Callable
 
+from custom_components.alexa_devices.repairs import raise_revert_to_core_issue
 from homeassistant.const import CONF_COUNTRY, EVENT_HOMEASSISTANT_STOP, Platform
 from homeassistant.core import Event, HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady
@@ -30,6 +31,7 @@ CONFIG_SCHEMA = cv.config_entry_only_config_schema(DOMAIN)
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
     """Set up the Alexa Devices component."""
+    raise_revert_to_core_issue(hass)
     async_setup_services(hass)
     return True
 
