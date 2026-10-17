@@ -38,7 +38,9 @@ NOTIFY: Final = (
         translation_key="speak",
         subkey="AUDIO_PLAYER",
         is_supported_fn=lambda _device: _device.device_family != SPEAKER_GROUP_FAMILY,
-        method=lambda api, device, message: api.call_alexa_speak(device, message),
+        method=lambda api, device, message, _title: api.call_alexa_speak(
+            device, message
+        ),
     ),
     AmazonNotifyEntityDescription(
         key="announce",
