@@ -30,6 +30,7 @@ class AmazonNotifyEntityDescription(NotifyEntityDescription):
     is_available_fn: Callable[[AmazonDevice], bool] = lambda _device: True
     method: Callable[[AmazonEchoApi, AmazonDevice, str, str | None], Awaitable[None]]
     subkey: str
+    supported_features: NotifyEntityFeature = NotifyEntityFeature(0)
 
 
 NOTIFY: Final = (
@@ -46,6 +47,7 @@ NOTIFY: Final = (
         key="announce",
         translation_key="announce",
         subkey="AUDIO_PLAYER",
+        supported_features=NotifyEntityFeature.TITLE,
         is_available_fn=lambda device: (
             device.communication_settings.get("communications") != "OFF"
         ),
@@ -88,8 +90,13 @@ async def async_setup_entry(
 class AmazonNotifyEntity(AmazonEntity, NotifyEntity):
     """Binary sensor notify platform."""
 
-    _attr_supported_features = NotifyEntityFeature.TITLE
     entity_description: AmazonNotifyEntityDescription
+
+    @property
+    @override
+    def supported_features(self) -> NotifyEntityFeature:
+        """Return the supported features."""
+        return self.entity_description.supported_features
 
     @property
     @override
