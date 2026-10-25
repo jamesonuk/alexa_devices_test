@@ -18,7 +18,13 @@ from homeassistant.components.sensor import (
     SensorEntityDescription,
     SensorStateClass,
 )
-from homeassistant.const import LIGHT_LUX, UnitOfDensity, UnitOfRatio, UnitOfTemperature
+from homeassistant.const import (
+    LIGHT_LUX,
+    EntityCategory,
+    UnitOfDensity,
+    UnitOfRatio,
+    UnitOfTemperature,
+)
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType
@@ -126,6 +132,7 @@ SENSORS: Final = (
     AmazonSensorEntityDescription(
         key="detectionTechnology",
         translation_key="detection_technology",
+        entity_category=EntityCategory.DIAGNOSTIC,
         entity_registry_enabled_default=False,
     ),
 )

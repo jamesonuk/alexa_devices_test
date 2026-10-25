@@ -1,11 +1,25 @@
 {
   "entity": {
+    "binary_sensor": {
+      "motion_sensor_enabled": {
+        "default": "mdi:motion-sensor",
+        "state": {
+          "off": "mdi:motion-sensor-off"
+        }
+      }
+    },
     "event": {
       "voice_event": {
         "default": "mdi:chat-processing"
       }
     },
     "select": {
+      "detection_range": {
+        "default": "mdi:motion-sensor"
+      },
+      "detection_sensitivity": {
+        "default": "mdi:motion-sensor"
+      },
       "dropin": {
         "default": "mdi:account-multiple-plus",
         "state": {
@@ -37,6 +51,12 @@
         "default": "mdi:bell",
         "state": {
           "off": "mdi:bell-off"
+        }
+      },
+      "led": {
+        "default": "mdi:led-on",
+        "state": {
+          "off": "mdi:led-off"
         }
       }
     },

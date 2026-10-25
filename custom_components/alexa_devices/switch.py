@@ -132,7 +132,6 @@ FEATURE_SWITCHES: Final = (
     AmazonSwitchEntityDescription(
         key="LED",
         translation_key="led",
-        entity_category=EntityCategory.CONFIG,
         is_on_fn=_sensor_is_on,
         is_available_fn=_sensor_is_available,
         method="call_feature_operation",
