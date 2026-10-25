@@ -30,7 +30,7 @@ class AmazonNotifyEntityDescription(NotifyEntityDescription):
     is_available_fn: Callable[[AmazonDevice], bool] = lambda _device: True
     method: Callable[[AmazonEchoApi, AmazonDevice, str, str | None], Awaitable[None]]
     subkey: str
-    supported_features: NotifyEntityFeature = NotifyEntityFeature(0)
+    supported_features: NotifyEntityFeature | None = None
 
 
 NOTIFY: Final = (
@@ -96,7 +96,7 @@ class AmazonNotifyEntity(AmazonEntity, NotifyEntity):
     @override
     def supported_features(self) -> NotifyEntityFeature:
         """Return the supported features."""
-        return self.entity_description.supported_features
+        return self.entity_description.supported_features or NotifyEntityFeature(0)
 
     @property
     @override

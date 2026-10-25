@@ -16,12 +16,12 @@ from aioamazondevices.exceptions import (
 )
 from aioamazondevices.structures import (
     AmazonDevice,
+    AmazonDeviceSensor,
     AmazonListEvent,
     AmazonListEventType,
     AmazonListItem,
     AmazonMediaState,
     AmazonSaveDataConfig,
-    AmazonSchedule,
     AmazonVocalRecord,
     AmazonVolumeState,
 )
@@ -189,9 +189,8 @@ class AmazonDevicesCoordinator(DataUpdateCoordinator[dict[str, AmazonDevice]]):
         self.api.on_dnd_event.append(self.dnd_event_handler)
         self.api.on_dnd_event.freeze()
 
-        self._notifications: dict[str, dict[str, AmazonSchedule]] = {}
-        self.api.on_notification_event.append(self.notification_event_handler)
-        self.api.on_notification_event.freeze()
+        self.api.on_sensor_event.append(self._on_sensor_event)
+        self.api.on_sensor_event.freeze()
 
     @override
     async def _async_update_data(self) -> dict[str, AmazonDevice]:
@@ -230,11 +229,8 @@ class AmazonDevicesCoordinator(DataUpdateCoordinator[dict[str, AmazonDevice]]):
                 await self._async_remove_device_stale(stale_devices)
             self.previous_devices = current_devices
 
-            # self.data is None only on the first refresh: previous_devices may
-            # already equal current_devices there if the device registry
-            # persisted them from an earlier run, so device_list_changed alone
-            # cannot be relied on to catch a fresh start (in-memory state is
-            # always empty then, regardless of what the registry remembers).
+            # sync data on first refresh and after the device list changes
+            # self.data is None only on the first refresh
             if self.data is None or device_list_changed:
                 await self._async_sync_on_device_list_change()
 
@@ -258,11 +254,7 @@ class AmazonDevicesCoordinator(DataUpdateCoordinator[dict[str, AmazonDevice]]):
 
     async def _async_sync_on_device_list_change(self) -> None:
         """Sync per-device state on first refresh and after the device list changes."""
-        for sync_call in (
-            self.sync_dnd_state,
-            self.sync_media_state,
-            self.sync_notifications,
-        ):
+        for sync_call in (self.sync_dnd_state, self.sync_media_state):
             try:
                 await sync_call()
             except ConfigEntryNotReady as err:
@@ -408,11 +400,6 @@ class AmazonDevicesCoordinator(DataUpdateCoordinator[dict[str, AmazonDevice]]):
         """Vocal records of devices."""
         return self._vocal_records
 
-    async def sync_notifications(self) -> None:
-        """Sync notifications."""
-        async with alexa_config_entry_errors():
-            await self.api.sync_notifications()
-
     async def sync_media_state(self) -> None:
         """Sync media state."""
         async with alexa_config_entry_errors():
@@ -461,14 +448,15 @@ class AmazonDevicesCoordinator(DataUpdateCoordinator[dict[str, AmazonDevice]]):
         """DND states of devices."""
         return self._dnd_states
 
-    async def notification_event_handler(
-        self, notifications: dict[str, dict[str, AmazonSchedule]]
-    ) -> None:
-        """Handle pushed notification events."""
-        self._notifications = notifications
-        self.async_update_listeners()
-
     @property
-    def notifications(self) -> dict[str, dict[str, AmazonSchedule]]:
-        """Notifications of devices."""
-        return self._notifications
+    def sensors(self) -> dict[str, dict[str, AmazonDeviceSensor]]:
+        """Return current sensor state from the library store."""
+        return self.api.sensors
+
+    def device_sensor(self, serial_num: str, key: str) -> AmazonDeviceSensor | None:
+        """Return a single sensor, if present."""
+        return self.sensors.get(serial_num, {}).get(key)
+
+    async def _on_sensor_event(self) -> None:
+        # Store is mutated in place; just re-render without resetting the poll timer
+        self.async_update_listeners()
