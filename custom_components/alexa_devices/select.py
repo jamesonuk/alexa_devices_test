@@ -4,7 +4,11 @@ from collections.abc import Callable
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Final, override
 
-from aioamazondevices.structures import AmazonDevice, AmazonDropInStatus
+from aioamazondevices.structures import (
+    AmazonDevice,
+    AmazonDeviceSensor,
+    AmazonDropInStatus,
+)
 
 from homeassistant.components.select import SelectEntity, SelectEntityDescription
 from homeassistant.const import EntityCategory
@@ -12,7 +16,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import HomeAssistantError
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
-from .const import DOMAIN
+from .const import DOMAIN, LOGGER
 from .coordinator import AmazonConfigEntry, alexa_api_call
 from .entity import AmazonEntity, AmazonServiceEntity
 
@@ -27,6 +31,9 @@ class AmazonSelectEntityDescription(SelectEntityDescription):
     is_available_fn: Callable[[AmazonDevice], bool] = lambda device: True
 
 
+# API values: "LOW", "MEDIUM", "HIGH", "UNKNOWN" is reported as no option
+MOTION_SENSOR_LEVELS: Final = ["low", "medium", "high"]
+
 SELECTS: Final = (
     AmazonSelectEntityDescription(
         key="dropin",
@@ -38,6 +45,21 @@ SELECTS: Final = (
         is_available_fn=lambda device: (
             device.communication_settings.get("dropin") is not None
         ),
+    ),
+)
+
+SENSOR_SELECTS: Final = (
+    SelectEntityDescription(
+        key="detectionSensitivity",
+        translation_key="detection_sensitivity",
+        entity_category=EntityCategory.CONFIG,
+        options=MOTION_SENSOR_LEVELS,
+    ),
+    SelectEntityDescription(
+        key="detectionRange",
+        translation_key="detection_range",
+        entity_category=EntityCategory.CONFIG,
+        options=MOTION_SENSOR_LEVELS,
     ),
 )
 
@@ -73,6 +95,13 @@ async def async_setup_entry(
                     for select_desc in SELECTS
                     for serial_num in new_devices
                     if select_desc.is_available_fn(coordinator.data[serial_num])
+                ]
+                + [
+                    AmazonSensorSelectEntity(coordinator, serial_num, select_desc)
+                    for select_desc in SENSOR_SELECTS
+                    for serial_num in new_devices
+                    if coordinator.device_sensor(serial_num, select_desc.key)
+                    is not None
                 ]
             )
 
@@ -128,6 +157,46 @@ class AmazonSelectEntity(AmazonEntity, SelectEntity):
 
         self._attr_current_option = option
         self.async_write_ha_state()
+
+
+class AmazonSensorSelectEntity(AmazonEntity, SelectEntity):
+    """Representation of a select entity backed by a device feature."""
+
+    @property
+    def _sensor(self) -> AmazonDeviceSensor | None:
+        """Return the sensor holding the current value."""
+        return self.coordinator.device_sensor(
+            self._serial_num, self.entity_description.key
+        )
+
+    @property
+    @override
+    def current_option(self) -> str | None:
+        """Return the selected option."""
+        if (sensor := self._sensor) is None:
+            return None
+        option = str(sensor.value).lower()
+        return option if option in self.options else None
+
+    @property
+    @override
+    def available(self) -> bool:
+        """Return if entity is available."""
+        return (
+            super().available
+            and (sensor := self._sensor) is not None
+            and sensor.error is False
+        )
+
+    @override
+    async def async_select_option(self, option: str) -> None:
+        """Change the selected option."""
+        LOGGER.warning(
+            "Setting %s is not yet supported (requested %s on %s)",
+            self.entity_description.key,
+            option,
+            self.device.account_name,
+        )
 
 
 class AmazonSelectServiceEntity(AmazonServiceEntity, SelectEntity):

@@ -123,6 +123,11 @@ SENSORS: Final = (
         device_class=SensorDeviceClass.AQI,
         state_class=SensorStateClass.MEASUREMENT,
     ),
+    AmazonSensorEntityDescription(
+        key="detectionTechnology",
+        translation_key="detection_technology",
+        entity_registry_enabled_default=False,
+    ),
 )
 NOTIFICATIONS: Final = (
     AmazonNotificationEntityDescription(

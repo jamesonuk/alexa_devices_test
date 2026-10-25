@@ -29,6 +29,24 @@ PARALLEL_UPDATES = 0
 type DescriptionFn = Callable[[AmazonDevice, str, AmazonDevicesCoordinator], bool]
 
 
+def _sensor_is_supported(
+    device: AmazonDevice, key: str, coordinator: AmazonDevicesCoordinator
+) -> bool:
+    """Return if the device has the sensor."""
+    return coordinator.device_sensor(device.serial_number, key) is not None
+
+
+def _sensor_is_available(
+    device: AmazonDevice, key: str, coordinator: AmazonDevicesCoordinator
+) -> bool:
+    """Return if the device is online and the sensor has a usable value."""
+    return (
+        device.online
+        and (sensor := coordinator.device_sensor(device.serial_number, key)) is not None
+        and sensor.error is False
+    )
+
+
 @dataclass(frozen=True, kw_only=True)
 class AmazonBinarySensorEntityDescription(BinarySensorEntityDescription):
     """Alexa Devices binary sensor entity description."""
@@ -51,15 +69,18 @@ BINARY_SENSORS: Final = (
         is_on_fn=lambda device, key, coordinator: bool(
             coordinator.sensors[device.serial_number][key].value != SENSOR_STATE_OFF
         ),
-        is_supported_fn=lambda device, key, coordinator: (
-            coordinator.device_sensor(device.serial_number, key) is not None
+        is_supported_fn=_sensor_is_supported,
+        is_available_fn=_sensor_is_available,
+    ),
+    AmazonBinarySensorEntityDescription(
+        key="motionSensor-enabled",
+        translation_key="motion_sensor_enabled",
+        entity_category=EntityCategory.DIAGNOSTIC,
+        is_on_fn=lambda device, key, coordinator: (
+            coordinator.sensors[device.serial_number][key].value == "ENABLED"
         ),
-        is_available_fn=lambda device, key, coordinator: (
-            device.online
-            and (sensor := coordinator.device_sensor(device.serial_number, key))
-            is not None
-            and sensor.error is False
-        ),
+        is_supported_fn=_sensor_is_supported,
+        is_available_fn=_sensor_is_available,
     ),
 )
 

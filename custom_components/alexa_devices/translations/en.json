@@ -59,6 +59,11 @@
         }
     },
     "entity": {
+        "binary_sensor": {
+            "motion_sensor_enabled": {
+                "name": "Motion sensor enabled"
+            }
+        },
         "event": {
             "voice_event": {
                 "name": "Voice event",
@@ -83,6 +88,22 @@
             "default_device": {
                 "name": "Default device"
             },
+            "detection_range": {
+                "name": "Detection range",
+                "state": {
+                    "high": "High",
+                    "low": "Low",
+                    "medium": "Medium"
+                }
+            },
+            "detection_sensitivity": {
+                "name": "Detection sensitivity",
+                "state": {
+                    "high": "High",
+                    "low": "Low",
+                    "medium": "Medium"
+                }
+            },
             "dropin": {
                 "name": "Drop In",
                 "state": {
@@ -95,6 +116,9 @@
         "sensor": {
             "alarm": {
                 "name": "Next alarm"
+            },
+            "detection_technology": {
+                "name": "Detection technology"
             },
             "reminder": {
                 "name": "Next reminder"
@@ -115,6 +139,9 @@
             },
             "do_not_disturb": {
                 "name": "Do not disturb"
+            },
+            "led": {
+                "name": "LED indicator"
             }
         },
         "todo": {
@@ -132,6 +159,9 @@
         },
         "cannot_retrieve_data_with_error": {
             "message": "Error retrieving data: {error}"
+        },
+        "cannot_set_feature": {
+            "message": "Error setting device feature: {error}"
         },
         "device_serial_number_missing": {
             "message": "Device serial number missing: {device_id}"
