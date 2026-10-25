@@ -52,7 +52,7 @@ async def _async_initial_sync(sync_call: Callable[[], Awaitable[None]]) -> None:
         )
 
 
-async def async_setup_entry(hass: HomeAssistant, entry: AmazonConfigEntry) -> None:
+async def async_setup_entry(hass: HomeAssistant, entry: AmazonConfigEntry) -> bool:
     """Set up Alexa Devices platform."""
 
     session = aiohttp_client.async_create_clientsession(hass)
@@ -93,8 +93,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: AmazonConfigEntry) -> No
 
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
 
+    return True
 
-async def async_migrate_entry(hass: HomeAssistant, entry: AmazonConfigEntry) -> None:
+
+async def async_migrate_entry(hass: HomeAssistant, entry: AmazonConfigEntry) -> bool:
     """Migrate old entry."""
 
     if entry.version == 1 and entry.minor_version < 3:
@@ -106,12 +108,12 @@ async def async_migrate_entry(hass: HomeAssistant, entry: AmazonConfigEntry) -> 
             hass.config_entries.async_update_entry(
                 entry, data=new_data, version=1, minor_version=3
             )
-            return
+            return True
 
         if CONF_SITE in entry.data[CONF_LOGIN_DATA]:
             # Site is there, just update version to avoid future migrations
             hass.config_entries.async_update_entry(entry, version=1, minor_version=3)
-            return
+            return True
 
         LOGGER.debug("Migrating from version %s.%s", entry.version, entry.minor_version)
 
@@ -131,7 +133,9 @@ async def async_migrate_entry(hass: HomeAssistant, entry: AmazonConfigEntry) -> 
             "Migration to version %s.%s successful", entry.version, entry.minor_version
         )
 
+    return True
 
-async def async_unload_entry(hass: HomeAssistant, entry: AmazonConfigEntry) -> None:
+
+async def async_unload_entry(hass: HomeAssistant, entry: AmazonConfigEntry) -> bool:
     """Unload a config entry."""
-    await hass.config_entries.async_unload_platforms_or_raise(entry, PLATFORMS)
+    return await hass.config_entries.async_unload_platforms(entry, PLATFORMS)
