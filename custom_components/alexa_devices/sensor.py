@@ -1,6 +1,5 @@
 """Support for sensors."""
 
-from collections.abc import Callable
 from dataclasses import dataclass
 from datetime import datetime
 from typing import Final, override
@@ -10,7 +9,6 @@ from aioamazondevices.const.schedules import (
     NOTIFICATION_REMINDER,
     NOTIFICATION_TIMER,
 )
-from aioamazondevices.structures import AmazonDevice
 
 from homeassistant.components.sensor import (
     SensorDeviceClass,
@@ -29,15 +27,14 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType
 
-from .coordinator import AmazonConfigEntry, AmazonDevicesCoordinator
-from .entity import AmazonEntity
+from .coordinator import AmazonConfigEntry
+from .entity import AmazonEntity, DescriptionFn
 from .utils import async_remove_unsupported_notification_sensors
 
 # Coordinator is used to centralize the data updates
 PARALLEL_UPDATES = 0
 
 
-type DescriptionFn[T] = Callable[[AmazonDevice, str, AmazonDevicesCoordinator], T]
 type ValueFn = DescriptionFn[StateType | datetime]
 
 
@@ -179,7 +176,7 @@ async def async_setup_entry(
                 AmazonSensorEntity(coordinator, serial_num, sensor_desc)
                 for sensor_desc in SENSORS
                 for serial_num in new_devices
-                if coordinator.device_sensor(serial_num, sensor_desc.key) is not None
+                if sensor_desc.key in coordinator.supported_sensor_keys(serial_num)
             ]
             notifications_list = [
                 AmazonSensorEntity(coordinator, serial_num, notification_desc)

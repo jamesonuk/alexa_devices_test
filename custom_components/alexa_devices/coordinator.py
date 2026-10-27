@@ -197,7 +197,7 @@ class AmazonDevicesCoordinator(DataUpdateCoordinator[dict[str, AmazonDevice]]):
         self.api.on_dnd_event.append(self.dnd_event_handler)
         self.api.on_dnd_event.freeze()
 
-        self.api.on_sensor_event.append(self._on_sensor_event)
+        self.api.on_sensor_event.append(self.sensor_event_handler)
         self.api.on_sensor_event.freeze()
 
     @override
@@ -456,15 +456,24 @@ class AmazonDevicesCoordinator(DataUpdateCoordinator[dict[str, AmazonDevice]]):
         """DND states of devices."""
         return self._dnd_states
 
+    async def sensor_event_handler(self) -> None:
+        """Handle pushed sensor events."""
+        self.async_update_listeners()
+
     @property
-    def sensors(self) -> dict[str, dict[str, AmazonDeviceSensor]]:
-        """Return current sensor state from the library store."""
+    def sensors(self) -> Mapping[str, Mapping[str, AmazonDeviceSensor]]:
+        """Sensors of devices, keyed by serial number then sensor key."""
         return self.api.sensors
 
     def device_sensor(self, serial_num: str, key: str) -> AmazonDeviceSensor | None:
-        """Return a single sensor, if present."""
+        """Return a sensor of a device, if present."""
         return self.sensors.get(serial_num, {}).get(key)
 
-    async def _on_sensor_event(self) -> None:
-        # Store is mutated in place; just re-render without resetting the poll timer
-        self.async_update_listeners()
+    def supported_sensor_keys(self, serial_num: str) -> set[str]:
+        """Return the sensor keys the device supports."""
+        return {
+            key
+            for instances in self.data[serial_num].features.values()
+            for feature in instances.values()
+            for key in feature.sensor_keys.values()
+        }

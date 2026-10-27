@@ -31,9 +31,6 @@ class AmazonSelectEntityDescription(SelectEntityDescription):
     is_available_fn: Callable[[AmazonDevice], bool] = lambda device: True
 
 
-# API values: "LOW", "MEDIUM", "HIGH", "UNKNOWN" is reported as no option
-MOTION_SENSOR_LEVELS: Final = ["low", "medium", "high"]
-
 SELECTS: Final = (
     AmazonSelectEntityDescription(
         key="dropin",
@@ -47,6 +44,9 @@ SELECTS: Final = (
         ),
     ),
 )
+
+# API values: "LOW", "MEDIUM", "HIGH", "UNKNOWN" is reported as no option
+MOTION_SENSOR_LEVELS: Final = ["low", "medium", "high"]
 
 SENSOR_SELECTS: Final = (
     SelectEntityDescription(
@@ -100,8 +100,7 @@ async def async_setup_entry(
                     AmazonSensorSelectEntity(coordinator, serial_num, select_desc)
                     for select_desc in SENSOR_SELECTS
                     for serial_num in new_devices
-                    if coordinator.device_sensor(serial_num, select_desc.key)
-                    is not None
+                    if select_desc.key in coordinator.supported_sensor_keys(serial_num)
                 ]
             )
 

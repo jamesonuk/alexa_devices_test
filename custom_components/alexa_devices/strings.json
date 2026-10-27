@@ -134,14 +134,14 @@
       "announcements": {
         "name": "Announcements"
       },
+      "aqm_led": {
+        "name": "LED indicator"
+      },
       "communications": {
         "name": "Communications"
       },
       "do_not_disturb": {
         "name": "Do not disturb"
-      },
-      "led": {
-        "name": "LED indicator"
       }
     },
     "todo": {
@@ -180,6 +180,30 @@
     },
     "unknown_exception": {
       "message": "Unknown error occurred: {error}"
+    }
+  },
+  "issues": {
+    "restart_required": {
+      "fix_flow": {
+        "step": {
+          "confirm_restart": {
+            "description": "Please restart Home Assistant to complete the reversion to the core Alexa Devices integration.",
+            "title": "Restart Home Assistant"
+          }
+        }
+      },
+      "title": "Restart required"
+    },
+    "revert_to_core": {
+      "fix_flow": {
+        "step": {
+          "confirm": {
+            "description": "This is a test version. You should remove this custom version and revert to the core Home Assistant Alexa Devices integration.\n\nDo you want to revert to the core Home Assistant Alexa Devices integration now?",
+            "title": "Revert to core version"
+          }
+        }
+      },
+      "title": "Revert to core version"
     }
   },
   "selector": {
