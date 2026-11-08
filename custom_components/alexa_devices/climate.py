@@ -81,11 +81,12 @@ async def async_setup_entry(
     entry.async_on_unload(coordinator.async_add_listener(_check_device))
 
 
-def _format_temperature(value: float) -> str:
+def _format_temperature(value: float) -> float:
     """Format a temperature the way Amazon expects it."""
+    # numbers, as Amazon reports them
     if float(value).is_integer():
-        return str(int(value))
-    return str(value)
+        return int(value)
+    return value
 
 
 class AmazonClimateEntity(AmazonEntity, ClimateEntity):
@@ -302,7 +303,7 @@ class AmazonClimateEntity(AmazonEntity, ClimateEntity):
                 sensor.error_msg = None
         self.async_write_ha_state()
 
-    def _temperature_payload(self, value: float) -> dict[str, str]:
+    def _temperature_payload(self, value: float) -> dict[str, float | str]:
         """Return a setpoint payload in the thermostat scale."""
         return {
             "value": _format_temperature(value),
